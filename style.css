@@ -81,6 +81,10 @@ legend {
 
 /* 字級 16px 以上，避免 iPhone 點輸入框時自動放大 */
 input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="email"],
+input[type="password"],
 select,
 textarea {
   width: 100%;
@@ -169,5 +173,34 @@ button.secondary { background: transparent; color: var(--accent); min-height: 40
 .tag.urg-高 { color: var(--high); border-color: currentColor; font-weight: 700; }
 .item-desc { margin: 0 0 4px; overflow-wrap: anywhere; white-space: pre-wrap; }
 .item-meta { margin: 0; font-size: 0.85rem; color: var(--muted); overflow-wrap: anywhere; }
+
+/* 頁面切換 */
+.site-nav { display: flex; gap: 8px; margin-bottom: 12px; }
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+.site-nav a[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+
+/* 兩欄並排（窄螢幕自動變一欄） */
+.field-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0 12px; }
+
+/* 交期詢問 */
+.tag.pending { color: var(--mid); border-color: currentColor; }
+.tag.replied { color: var(--low); border-color: currentColor; font-weight: 700; }
+.reply-form { margin-top: 8px; }
+.reply-form label { font-size: 0.9rem; margin-bottom: 4px; }
+.reply-row { display: flex; gap: 8px; }
+.reply-row input { flex: 1; min-width: 0; }
+.reply-row button { min-height: 48px; }
+#logged-in { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+#logged-in[hidden], #login-form[hidden] { display: none; }
 
 .site-footer { padding-bottom: 32px; color: var(--muted); font-size: 0.85rem; text-align: center; }
