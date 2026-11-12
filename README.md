@@ -5,3 +5,5 @@
 [報修欄位表（Excel）](文件/報修欄位表.xlsx)
 
 [交期詢問網頁](delivery.html)
+
+[交期回覆 LINE 通知設定步驟](文件/LINE通知設定步驟.md)

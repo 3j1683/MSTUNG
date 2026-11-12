@@ -44,8 +44,13 @@
 - 工作天從「下單日」起算；只回報天數，不換算成預計交貨日期，所以不需要公司行事曆。
 - 數量不另開單位欄位，需要時寫在品項裡。
 - 業務填寫的欄位就是以上四項，不再增加。
-- 檔案：supabase/delivery_inquiries.sql、delivery.html、delivery.js。
+- 業務不需要登入。已知風險：拿到網址的人都看得到客戶名稱、品項與數量，請勿填寫機密資料。
+- 回覆後用 LINE 通知：推播到業務的 LINE 群組（不推播給個人，所以不用加欄位、業務也不用登入）。
+  回覆被修改時再通知一次並附原本天數；清空回覆不通知。
+- 檔案：supabase/delivery_inquiries.sql、delivery.html、delivery.js、
+  supabase/functions/notify-line、supabase/functions/line-webhook；設定步驟見 文件/LINE通知設定步驟.md。
+- LINE 官方帳號：沿用公司現有的帳號，不另開。
 
 ■ 交期詢問：待確認
-- 業務是否也要登入？目前任何人都能看到客戶名稱與數量。
-- 回覆後要不要通知業務（Email 或 LINE）？
+- 現有官方帳號的推播額度（和對客人的訊息共用）是否足夠。
+- 現有官方帳號是否已接其他系統（Webhook URL、Channel access token），設定時不能影響。
