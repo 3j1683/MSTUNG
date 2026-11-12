@@ -35,18 +35,27 @@
 ## 事前準備
 
 - 已在 Supabase 執行 `supabase/delivery_inquiries.sql`。
-- 一個 LINE 官方帳號（可以新開一個專門用來通知）。
+- 公司**現有的** LINE 官方帳號（已決定沿用，不另開）。
+- 能登入這個官方帳號後台與 LINE Developers Console 的管理員權限。
 - 一個業務的 LINE 群組。
 
-## 步驟一：LINE 官方帳號與 Messaging API
+## 步驟一：檢查現有的 LINE 官方帳號
 
-1. 到 LINE Official Account Manager 建立官方帳號（或使用現有的）。
-2. 在官方帳號的設定中**啟用 Messaging API**，系統會帶你到 LINE Developers 建立 Provider 與 Channel。
+沿用現有帳號時，先確認它目前有沒有接其他系統，避免改設定時把原本的功能弄壞。
+
+1. 在 LINE Official Account Manager 打開這個官方帳號，到設定中的 Messaging API：
+   - **還沒啟用**：按啟用，系統會帶你到 LINE Developers 建立 Provider 與 Channel。
+   - **已經啟用**：記下它連到的 Channel，到 LINE Developers Console 打開那個 Channel。
+2. 在 LINE Developers Console 的 **Messaging API** 分頁，看 **Webhook URL** 有沒有填：
+   - **空白**：照下面步驟設定即可。
+   - **已經有網址**：代表有其他系統（例如客服機器人）在接收訊息。一個官方帳號只能設一個 Webhook URL，**先把原本的網址記下來**，步驟四取得群組 ID 後要改回去。
 3. 在官方帳號設定中**允許加入群組**。
-4. 建議把「自動回應訊息」與「加入好友的歡迎訊息」關掉，避免機器人在群組裡亂回話。
-5. 到 LINE Developers Console，打開這個 Channel，記下兩個值（**不要貼到聊天、程式碼或 GitHub**）：
+4. 「自動回應訊息」與「加入好友的歡迎訊息」是給客人用的，**不要關**。官方帳號進群組後，若有人說到關鍵字可能會自動回覆，這是正常的。
+5. 記下兩個值（**不要貼到聊天、程式碼或 GitHub**）：
    - **Basic settings → Channel secret**
-   - **Messaging API → Channel access token (long-lived)**：按 Issue 產生
+   - **Messaging API → Channel access token (long-lived)**
+     - 如果已經有 token：**不要按 Reissue**，重新發行會讓舊的立刻失效，正在使用它的系統會壞掉。請向管理這個官方帳號的人取得現有的 token。
+     - 如果還沒有：按 Issue 產生。
 
 ## 步驟二：在 Supabase 設定密鑰
 
@@ -92,6 +101,7 @@ supabase functions deploy notify-line --no-verify-jwt --project-ref frndcsvhzolw
 2. 把官方帳號邀請進業務的 LINE 群組。
 3. 官方帳號會在群組裡回覆「群組 ID：C……」。如果沒看到，在群組裡輸入「群組ID」再試一次。
 4. 把這串 ID 填到 Supabase Secrets 的 `LINE_GROUP_ID`。
+5. 如果步驟一發現原本就有 Webhook URL：現在把它**改回原本的網址**。通知只用推播，不需要 Webhook；只有之後要重新取得群組 ID 時才需要再暫時改過來。
 
 ## 步驟五：建立 Database Webhook
 
@@ -125,6 +135,7 @@ supabase functions deploy notify-line --no-verify-jwt --project-ref frndcsvhzolw
 
 ## 注意事項
 
-- **推播額度**：LINE 官方帳號的推播訊息每月有免費上限，超過要升級方案；額度怎麼計算請以官方帳號後台的說明為準。回覆群組 ID 用的是「回覆訊息」，不佔推播額度。
+- **推播額度**：LINE 官方帳號的推播訊息每月有免費上限，超過要升級方案；額度怎麼計算請以官方帳號後台的說明為準。現有帳號的額度會和**對客人發的行銷訊息共用**，請先看目前每月用量還剩多少。回覆群組 ID 用的是「回覆訊息」，不佔推播額度。
+- **群組裡顯示的名稱**：業務群組會看到公司官方帳號的名稱與頭像在發通知。
 - **訊息內容**：通知會包含客戶名稱、品項與數量，請確認業務群組裡只有公司內部的人。
 - **金鑰保管**：Channel secret、Channel access token、NOTIFY_WEBHOOK_SECRET 只放在 Supabase Secrets，不要放進 `config.js` 或任何上傳到 GitHub 的檔案。
