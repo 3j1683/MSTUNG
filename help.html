@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+  <meta name="color-scheme" content="light dark">
+  <title>使用說明</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css?v=1.1.0">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav" aria-label="頁面切換">
+      <a href="./">報修登記</a>
+      <a href="delivery.html">交期詢問</a>
+      <a href="help.html" aria-current="page">使用說明</a>
+    </nav>
+    <h1>使用說明</h1>
+    <p class="subtitle">報修登記與交期詢問的操作方式。</p>
+  </header>
+
+  <main>
+    <section class="card help" aria-labelledby="h-repair">
+      <h2 id="h-repair">報修登記（所有同事）</h2>
+      <p>不需要登入，手機或電腦都可以使用。</p>
+      <ol>
+        <li>打開<a href="./">報修登記</a>頁。</li>
+        <li>填寫報修人、地點或部門、類別、問題說明，選擇緊急程度（預設「中」）。</li>
+        <li>按「送出報修」。看到「已送出報修」就完成了。</li>
+        <li>在下方清單可以看到最近 20 筆報修與處理狀態，可用「處理狀態」「類別」篩選。</li>
+      </ol>
+      <p>處理狀態有三種：<strong>待處理</strong>（剛送出）、<strong>處理中</strong>、<strong>已完成</strong>，由管理人員更新。</p>
+    </section>
+
+    <section class="card help" aria-labelledby="h-delivery">
+      <h2 id="h-delivery">交期詢問（業務）</h2>
+      <p>不需要登入。</p>
+      <ol>
+        <li>打開<a href="delivery.html">交期詢問</a>頁。</li>
+        <li>填寫業務姓名、客戶或案件名稱、品項（含規格）、數量；希望交期可不填。</li>
+        <li>按「送出詢問」。業務姓名會記在這台裝置上，下次自動帶入。</li>
+        <li>回覆後，清單會顯示「下單後 N 個工作天」。工作天從<strong>下單日</strong>起算。</li>
+        <li>在清單上方輸入自己的姓名、勾選「只看待回覆」，可以快速找到自己的詢問。</li>
+      </ol>
+      <p>若已設定 LINE 通知，回覆後業務的 LINE 群組也會收到訊息。</p>
+    </section>
+
+    <section class="card help" aria-labelledby="h-staff">
+      <h2 id="h-staff">管理人員與回覆人員</h2>
+      <h3>登入</h3>
+      <p>在頁面最下方用 Email 與密碼登入。兩個頁面共用登入狀態，登入一次即可。帳號由系統管理員在 Supabase 建立並加入名單。</p>
+      <h3>更新報修處理狀態（報修管理人員）</h3>
+      <ol>
+        <li>在報修登記頁登入。</li>
+        <li>清單每一筆下方會出現「更新處理狀態」，選擇新狀態後按「更新」。</li>
+        <li>系統會自動記錄狀態更新時間。</li>
+      </ol>
+      <h3>回覆交期（交期回覆人員）</h3>
+      <ol>
+        <li>在交期詢問頁登入，勾選「只看待回覆」。</li>
+        <li>在每一筆下方填「下單後幾個工作天」（0～365），按「回覆」。</li>
+        <li>天數可以再修改；修改後會再通知一次。</li>
+      </ol>
+      <p>登入後顯示「只能查看」，代表帳號還沒加入對應名單，請聯絡系統管理員。</p>
+    </section>
+
+    <section class="card help" aria-labelledby="h-faq">
+      <h2 id="h-faq">常見問題</h2>
+      <dl>
+        <dt>送出後可以修改或刪除嗎？</dt>
+        <dd>不行。為了保留紀錄，報修與詢問送出後不能修改或刪除，填錯請再送一筆並在說明中註明。</dd>
+        <dt>誰看得到我填的資料？</dt>
+        <dd>任何拿到網址的人都看得到清單，請不要填寫真實姓名以外的個人資料、密碼或機密客戶資料。</dd>
+        <dt>畫面顯示「網路連線失敗」或「清單載入失敗」？</dt>
+        <dd>確認網路後按「重新整理」。仍然失敗請聯絡系統管理員。</dd>
+        <dt>看不到最新版本？</dt>
+        <dd>網站更新後最多約 10 分鐘生效，可以重新整理頁面。目前版本顯示在頁面最下方。</dd>
+      </dl>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    報修登記系統 <span id="app-version">v1.1.0</span>
+  </footer>
+</body>
+</html>
