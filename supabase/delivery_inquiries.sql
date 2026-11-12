@@ -63,7 +63,7 @@ create table if not exists public.delivery_inquiries (
   constraint delivery_inquiries_quantity_range
     check (quantity between 1 and 10000000),
 
-  -- 回覆的工作天數：0～365
+  -- 回覆的工作天數：0～365，從下單日起算
   constraint delivery_inquiries_reply_days_range
     check (reply_working_days is null or reply_working_days between 0 and 365),
 
@@ -78,7 +78,7 @@ comment on column public.delivery_inquiries.customer           is '客戶或案�
 comment on column public.delivery_inquiries.item               is '品項（含規格）';
 comment on column public.delivery_inquiries.quantity           is '數量';
 comment on column public.delivery_inquiries.desired_date       is '希望交期（可空白）';
-comment on column public.delivery_inquiries.reply_working_days is '回覆：幾個工作天';
+comment on column public.delivery_inquiries.reply_working_days is '回覆：下單後幾個工作天交貨（從下單日起算，不換算成日期）';
 comment on column public.delivery_inquiries.replied_by         is '回覆人（自動填入）';
 comment on column public.delivery_inquiries.replied_at         is '回覆時間（自動填入）';
 

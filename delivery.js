@@ -121,7 +121,7 @@
     var f = el("form", "reply-form");
     f.noValidate = true;
     var id = "days-" + r.id;
-    var label = el("label", null, "回覆工作天數");
+    var label = el("label", null, "回覆：下單後幾個工作天");
     label.htmlFor = id;
     var input = el("input");
     input.id = id;
@@ -171,7 +171,7 @@
     if (r.reply_working_days == null) {
       top.appendChild(el("span", "tag pending", "待回覆"));
     } else {
-      top.appendChild(el("span", "tag replied", r.reply_working_days + " 個工作天"));
+      top.appendChild(el("span", "tag replied", "下單後 " + r.reply_working_days + " 個工作天"));
     }
     top.appendChild(el("span", "tag",
       r.desired_date ? "希望交期 " + r.desired_date : "未填希望交期"));
