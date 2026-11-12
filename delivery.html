@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; img-src 'self' data:; connect-src https://frndcsvhzolwtuqvofmg.supabase.co; base-uri 'none'; form-action 'none'">
+  <meta name="color-scheme" content="light dark">
+  <title>交期詢問</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav" aria-label="頁面切換">
+      <a href="./">報修登記</a>
+      <a href="delivery.html" aria-current="page">交期詢問</a>
+    </nav>
+    <h1>交期詢問</h1>
+    <p class="subtitle">業務填寫詢問，指定人員會回覆下單後需要幾個工作天交貨。</p>
+  </header>
+
+  <main>
+    <section class="card" aria-labelledby="form-title">
+      <h2 id="form-title">新增交期詢問</h2>
+
+      <form id="inquiry-form" novalidate>
+        <div class="field">
+          <label for="sales_name">業務姓名</label>
+          <input id="sales_name" name="sales_name" type="text" maxlength="50" autocomplete="name" required>
+        </div>
+
+        <div class="field">
+          <label for="customer">客戶或案件名稱</label>
+          <input id="customer" name="customer" type="text" maxlength="100" required>
+        </div>
+
+        <div class="field">
+          <label for="item">品項（含規格）</label>
+          <input id="item" name="item" type="text" maxlength="200" required>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="quantity">數量</label>
+            <input id="quantity" name="quantity" type="number" inputmode="numeric"
+                   min="1" max="10000000" step="1" required>
+          </div>
+          <div class="field">
+            <label for="desired_date">希望交期（可不填）</label>
+            <input id="desired_date" name="desired_date" type="date">
+          </div>
+        </div>
+
+        <button id="submit-btn" type="submit">送出詢問</button>
+        <p id="form-message" class="message" role="status" aria-live="polite" hidden></p>
+      </form>
+    </section>
+
+    <section class="card" aria-labelledby="list-title">
+      <div class="list-header">
+        <h2 id="list-title">最近 20 筆詢問</h2>
+        <button id="refresh-btn" type="button" class="secondary">重新整理</button>
+      </div>
+      <p id="list-message" class="message" role="status" aria-live="polite" hidden></p>
+      <ul id="inquiry-list" class="repair-list"></ul>
+    </section>
+
+    <section class="card" aria-labelledby="login-title">
+      <h2 id="login-title">回覆人員登入</h2>
+
+      <form id="login-form" novalidate>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="username" required>
+        </div>
+        <div class="field">
+          <label for="password">密碼</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required>
+        </div>
+        <button id="login-btn" type="submit">登入</button>
+      </form>
+
+      <div id="logged-in" hidden>
+        <p id="who" class="item-meta"></p>
+        <button id="logout-btn" type="button" class="secondary">登出</button>
+      </div>
+      <p id="login-message" class="message" role="status" aria-live="polite" hidden></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">示範用系統，請勿填寫真實客戶資料與敏感資訊。</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js"
+          integrity="sha384-TcHRA3zBbn+Lexh5n+Oil4guNPOS3rjNDpGRAN46u/s/mB2IZ50ceC6TYDU2yvgK"
+          crossorigin="anonymous"></script>
+  <script src="config.js"></script>
+  <script src="delivery.js"></script>
+</body>
+</html>
