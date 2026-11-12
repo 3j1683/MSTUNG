@@ -7,13 +7,15 @@
         content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; img-src 'self' data:; connect-src https://frndcsvhzolwtuqvofmg.supabase.co; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
   <title>交期詢問</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css?v=1.1.0">
 </head>
 <body>
   <header class="site-header">
     <nav class="site-nav" aria-label="頁面切換">
       <a href="./">報修登記</a>
       <a href="delivery.html" aria-current="page">交期詢問</a>
+      <a href="help.html">使用說明</a>
     </nav>
     <h1>交期詢問</h1>
     <p class="subtitle">業務填寫詢問，指定人員會回覆下單後需要幾個工作天交貨。</p>
@@ -27,6 +29,7 @@
         <div class="field">
           <label for="sales_name">業務姓名</label>
           <input id="sales_name" name="sales_name" type="text" maxlength="50" autocomplete="name" required>
+          <p class="hint left">會記住在這台裝置上，下次自動帶入。</p>
         </div>
 
         <div class="field">
@@ -61,12 +64,27 @@
         <h2 id="list-title">最近 20 筆詢問</h2>
         <button id="refresh-btn" type="button" class="secondary">重新整理</button>
       </div>
+
+      <form id="filter-form" class="filters" novalidate>
+        <div class="field">
+          <label for="filter-sales">業務姓名</label>
+          <input id="filter-sales" type="search" maxlength="50" placeholder="輸入姓名篩選" enterkeyhint="search">
+        </div>
+        <div class="field check-field">
+          <label class="check">
+            <input id="filter-pending" type="checkbox">
+            <span>只看待回覆</span>
+          </label>
+        </div>
+      </form>
+
       <p id="list-message" class="message" role="status" aria-live="polite" hidden></p>
       <ul id="inquiry-list" class="repair-list"></ul>
     </section>
 
     <section class="card" aria-labelledby="login-title">
       <h2 id="login-title">回覆人員登入</h2>
+      <p class="hint left">登入後可以回覆工作天數。業務詢問不需要登入。</p>
 
       <form id="login-form" novalidate>
         <div class="field">
@@ -88,12 +106,16 @@
     </section>
   </main>
 
-  <footer class="site-footer">示範用系統，請勿填寫真實客戶資料與敏感資訊。</footer>
+  <footer class="site-footer">
+    示範用系統，請勿填寫真實客戶資料與敏感資訊。<br>
+    報修登記系統 <span id="app-version"></span>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js"
           integrity="sha384-TcHRA3zBbn+Lexh5n+Oil4guNPOS3rjNDpGRAN46u/s/mB2IZ50ceC6TYDU2yvgK"
           crossorigin="anonymous"></script>
-  <script src="config.js"></script>
-  <script src="delivery.js"></script>
+  <script src="config.js?v=1.1.0"></script>
+  <script src="common.js?v=1.1.0"></script>
+  <script src="delivery.js?v=1.1.0"></script>
 </body>
 </html>
