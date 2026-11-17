@@ -2,7 +2,7 @@
 
 用來登記報修需求、詢問交期，並集中查看處理進度。手機與電腦都能使用。
 
-目前版本：**v1.2.0**（更新紀錄見 [CHANGELOG.md](CHANGELOG.md)）
+目前版本：**v1.2.1**（更新紀錄見 [CHANGELOG.md](CHANGELOG.md)）
 
 ## 網址
 
@@ -59,7 +59,10 @@
    - 報修管理人員：`supabase/update_v1.1.sql` 最後的範例 SQL（加入 `repair_admins`）
    - 交期回覆人員：`supabase/delivery_inquiries.sql` 最後的範例 SQL（加入 `delivery_responders`）
 5. 建議在 Supabase → Authentication 關閉開放註冊，避免陌生人自行建立帳號。
-6. （選用）LINE 通知：依 [文件/LINE通知設定步驟.md](文件/LINE通知設定步驟.md) 設定。
+6. 設定登入信件的回到網址（邀請信、忘記密碼信才會連回網站）：Supabase → Authentication → URL Configuration
+   - **Site URL**：`https://3j1683.github.io/MSTUNG/`
+   - **Redirect URLs** 新增：`https://3j1683.github.io/MSTUNG/**`
+7. （選用）LINE 通知：依 [文件/LINE通知設定步驟.md](文件/LINE通知設定步驟.md) 設定。
 
 ## 注意事項
 

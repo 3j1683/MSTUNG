@@ -290,7 +290,21 @@ input[type="search"] {
 .inline-row button { min-height: 48px; }
 
 #logged-in { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-#logged-in[hidden], #login-form[hidden] { display: none; }
+#logged-in[hidden], #login-form[hidden], #reset-form[hidden] { display: none; }
+
+/* 「忘記密碼？」文字按鈕 */
+.link-btn {
+  display: block;
+  margin: 8px 0 0;
+  min-height: 44px;
+  padding: 0 4px;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 .hint.left { text-align: left; margin: -4px 0 12px; }
 .field .hint.left { margin: 4px 0 0; }
 
