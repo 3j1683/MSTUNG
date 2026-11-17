@@ -2,7 +2,7 @@
 
 用來登記報修需求、詢問交期，並集中查看處理進度。手機與電腦都能使用。
 
-目前版本：**v1.1.0**（更新紀錄見 [CHANGELOG.md](CHANGELOG.md)）
+目前版本：**v1.2.0**（更新紀錄見 [CHANGELOG.md](CHANGELOG.md)）
 
 ## 網址
 
@@ -19,6 +19,7 @@
 - **交期詢問**：業務填寫客戶、品項、數量、希望交期；回覆人員登入後回覆「下單後幾個工作天」。清單可依業務姓名、只看待回覆篩選。
 - **LINE 通知**：交期回覆後推播到業務的 LINE 群組（需另外設定，見下方）。
 - 一般使用者不需要登入；管理人員在任一頁登入一次，兩頁共用。
+- 可以「加入主畫面」，像 App 一樣從手機桌面開啟。
 
 ## 系統架構
 
@@ -35,7 +36,10 @@
 | `help.html` | 使用說明頁 |
 | `common.js` | 共用：Supabase 連線、管理人員登入、訊息與時間格式 |
 | `config.js` | Supabase 網址與 publishable key（**不可放 secret 金鑰**） |
-| `style.css`、`favicon.svg` | 樣式與圖示 |
+| `style.css` | 樣式 |
+| `favicon.svg`、`apple-touch-icon.png`、`icons/` | App 圖示（分頁、iPhone、Android 主畫面） |
+| `manifest.webmanifest` | 加入主畫面後的 App 名稱、圖示與顏色 |
+| `og-image.png` | 分享到 LINE、Facebook 時的預覽圖 |
 | `supabase/schema.sql` | 報修資料表與權限（v1.0） |
 | `supabase/delivery_inquiries.sql` | 交期詢問資料表與權限（v1.0） |
 | `supabase/update_v1.1.sql` | v1.1：報修管理人員可更新處理狀態 |
