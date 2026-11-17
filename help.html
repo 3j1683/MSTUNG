@@ -7,8 +7,24 @@
         content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
   <title>使用說明</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=1.1.0">
+  <meta name="description" content="報修登記、交期詢問與管理人員的操作說明。">
+  <meta name="theme-color" content="#2458c6">
+  <link rel="icon" href="favicon.svg?v=1.2.0" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1.2.0">
+  <link rel="manifest" href="manifest.webmanifest?v=1.2.0">
+  <meta name="apple-mobile-web-app-title" content="報修登記">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:site_name" content="報修登記系統">
+  <meta property="og:title" content="報修登記系統｜使用說明">
+  <meta property="og:description" content="報修登記、交期詢問與管理人員的操作說明。">
+  <meta property="og:url" content="https://3j1683.github.io/MSTUNG/help.html">
+  <meta property="og:image" content="https://3j1683.github.io/MSTUNG/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="報修登記系統：報修、交期詢問、處理進度">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="style.css?v=1.2.0">
 </head>
 <body>
   <header class="site-header">
@@ -17,8 +33,14 @@
       <a href="delivery.html">交期詢問</a>
       <a href="help.html" aria-current="page">使用說明</a>
     </nav>
-    <h1>使用說明</h1>
-    <p class="subtitle">報修登記與交期詢問的操作方式。</p>
+    <div class="hero">
+      <img class="hero-icon" src="favicon.svg?v=1.2.0" alt="" width="64" height="64">
+      <div class="hero-text">
+        <p class="hero-kicker">報修登記系統</p>
+        <h1>使用說明</h1>
+        <p class="subtitle">報修登記與交期詢問的操作方式。</p>
+      </div>
+    </div>
   </header>
 
   <main>
@@ -66,6 +88,24 @@
       <p>登入後顯示「只能查看」，代表帳號還沒加入對應名單，請聯絡系統管理員。</p>
     </section>
 
+    <section class="card help" aria-labelledby="h-install">
+      <h2 id="h-install">加入手機主畫面</h2>
+      <p>加入後，手機桌面會出現「報修登記」圖示，點開就像 App 一樣全螢幕使用。</p>
+      <h3>iPhone（Safari）</h3>
+      <ol>
+        <li>用 Safari 打開<a href="./">報修登記</a>頁。</li>
+        <li>點下方的「分享」按鈕（方框加向上箭頭）。</li>
+        <li>選「加入主畫面」，再按「新增」。</li>
+      </ol>
+      <h3>Android（Chrome）</h3>
+      <ol>
+        <li>用 Chrome 打開<a href="./">報修登記</a>頁。</li>
+        <li>點右上角「⋮」選單。</li>
+        <li>選「加到主畫面」或「安裝應用程式」。</li>
+      </ol>
+      <p>長按主畫面上的圖示（Android），可以直接開啟「報修登記」或「交期詢問」。</p>
+    </section>
+
     <section class="card help" aria-labelledby="h-faq">
       <h2 id="h-faq">常見問題</h2>
       <dl>
@@ -82,7 +122,7 @@
   </main>
 
   <footer class="site-footer">
-    報修登記系統 <span id="app-version">v1.1.0</span>
+    報修登記系統 <span id="app-version">v1.2.0</span>
   </footer>
 </body>
 </html>
