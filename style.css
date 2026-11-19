@@ -592,7 +592,8 @@ input[type="search"] {
 .s-empty { color: var(--muted); text-align: center; }
 
 .s-viewer {
-  max-width: min(96vw, 1100px);
+  width: min(96vw, 1100px);
+  max-width: 96vw;
   max-height: 94vh;
   padding: 12px;
   border: 0;
@@ -600,11 +601,57 @@ input[type="search"] {
   background: var(--card);
   color: var(--text);
 }
-.s-viewer::backdrop { background: rgba(0, 0, 0, 0.75); }
-.s-viewer figure { margin: 0; }
-.s-viewer img { display: block; max-width: 100%; max-height: 78vh; margin: 0 auto; background: #ffffff; border-radius: 6px; }
-.s-viewer figcaption { margin: 8px 0; text-align: center; font-size: 0.95rem; overflow-wrap: anywhere; }
-.s-viewer form { display: flex; justify-content: center; }
+.s-viewer::backdrop { background: rgba(0, 0, 0, 0.8); }
+/* 放大檢視：一般時整張放進畫面，按「放大」或點圖片後放大 2.5 倍，可拖曳捲動 */
+.s-zoomwrap {
+  overflow: auto;
+  max-height: 70vh;
+  background: #ffffff;
+  border-radius: 6px;
+  text-align: center;
+  -webkit-overflow-scrolling: touch;
+}
+.s-zoomwrap img {
+  display: inline-block;
+  max-width: 100%;
+  max-height: 70vh;
+  vertical-align: middle;
+  cursor: zoom-in;
+}
+.s-zoomwrap.zoomed { text-align: left; }
+.s-zoomwrap.zoomed img { max-width: none; max-height: none; width: 250%; cursor: zoom-out; }
+.s-viewer-cap { margin: 8px 0; text-align: center; font-size: 0.95rem; overflow-wrap: anywhere; }
+.s-viewer-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.s-viewer-actions form { margin: 0; }
+
+/* 顯示方式：客戶卡片／只看貼紙圖 */
+.s-view { display: inline-flex; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin: 0 0 8px; }
+.s-view button { min-height: 44px; border: 0; border-radius: 0; background: transparent; color: var(--muted); padding: 0 16px; }
+.s-view button[aria-pressed="true"] { background: var(--accent); color: var(--accent-text); }
+
+/* 卡片上的貼紙圖：大張 */
+.s-imgs.s-big { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.s-big .s-thumb { height: 150px; }
+
+/* 只看貼紙圖 */
+.s-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.s-gallery[hidden], .s-gallery [hidden] { display: none; }
+.s-tile {
+  padding: 10px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.s-tile .s-thumb { height: 190px; }
+.s-tile figcaption { margin-top: 8px; font-size: 0.9rem; color: var(--text); }
+.s-tile figcaption b { display: block; font-size: 1.02rem; }
+.s-tile figcaption span { display: block; color: var(--muted); font-size: 0.82rem; }
+.s-list[hidden] { display: none; }
 .s-tag.none { color: #ffffff; background: var(--high); border-color: var(--high); }
 .s-warn {
   margin: 0 0 10px;
