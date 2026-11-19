@@ -25,7 +25,8 @@ window.STICKER_DATA = {
      "src": "stickers/dc4763fb0b.webp",
      "w": 358,
      "h": 135,
-     "caption": ""
+     "caption": "",
+     "text": "鑫永富"
     }
    ],
    "positions": []
@@ -47,7 +48,8 @@ window.STICKER_DATA = {
      "src": "stickers/459db73d69.webp",
      "w": 548,
      "h": 341,
-     "caption": ""
+     "caption": "",
+     "text": "政航"
     }
    ],
    "positions": []
@@ -84,7 +86,8 @@ window.STICKER_DATA = {
      "src": "stickers/681eb5587e.webp",
      "w": 332,
      "h": 280,
-     "caption": ""
+     "caption": "",
+     "text": "盛達"
     }
    ],
    "positions": []
@@ -106,7 +109,8 @@ window.STICKER_DATA = {
      "src": "stickers/9c7b200e39.webp",
      "w": 414,
      "h": 311,
-     "caption": ""
+     "caption": "",
+     "text": "大豐燿"
     }
    ],
    "positions": []
@@ -158,7 +162,8 @@ window.STICKER_DATA = {
      "src": "stickers/16895a129f.webp",
      "w": 350,
      "h": 298,
-     "caption": ""
+     "caption": "",
+     "text": "允贊"
     }
    ],
    "positions": []
@@ -180,7 +185,8 @@ window.STICKER_DATA = {
      "src": "stickers/e0e74924e9.webp",
      "w": 1200,
      "h": 467,
-     "caption": ""
+     "caption": "",
+     "text": "永久 連絡電話 05-6930799"
     }
    ],
    "positions": []
@@ -217,7 +223,8 @@ window.STICKER_DATA = {
      "src": "stickers/6995372ba1.webp",
      "w": 335,
      "h": 124,
-     "caption": ""
+     "caption": "",
+     "text": "凱駿33"
     }
    ],
    "positions": []
@@ -269,7 +276,8 @@ window.STICKER_DATA = {
      "src": "stickers/711fe2b43b.webp",
      "w": 627,
      "h": 282,
-     "caption": ""
+     "caption": "",
+     "text": "高安 綠 PANTONE 354 C"
     }
    ],
    "positions": []
@@ -291,7 +299,8 @@ window.STICKER_DATA = {
      "src": "stickers/222f6fdf41.webp",
      "w": 1200,
      "h": 467,
-     "caption": ""
+     "caption": "",
+     "text": "唯鴻 連絡電話 05-6939400"
     }
    ],
    "positions": []
@@ -373,7 +382,8 @@ window.STICKER_DATA = {
      "src": "stickers/46534bb10a.webp",
      "w": 535,
      "h": 333,
-     "caption": ""
+     "caption": "",
+     "text": "鴻麒"
     }
    ],
    "positions": []
@@ -410,7 +420,8 @@ window.STICKER_DATA = {
      "src": "stickers/3320dd8485.webp",
      "w": 314,
      "h": 141,
-     "caption": ""
+     "caption": "",
+     "text": "哲銓 1-64橘"
     }
    ],
    "positions": []
@@ -552,19 +563,22 @@ window.STICKER_DATA = {
      "src": "stickers/c9dea2ea74.webp",
      "w": 320,
      "h": 125,
-     "caption": ""
+     "caption": "",
+     "text": "永清鷹架 0937-234453"
     },
     {
      "src": "stickers/8966a42d71.webp",
      "w": 1200,
      "h": 468,
-     "caption": ""
+     "caption": "",
+     "text": "永清鷹架 橫桿 1.829m"
     },
     {
      "src": "stickers/b02e2b3ccb.webp",
      "w": 581,
      "h": 361,
-     "caption": ""
+     "caption": "",
+     "text": "永清鷹架 橫桿 0.779m"
     }
    ],
    "positions": []
@@ -586,13 +600,15 @@ window.STICKER_DATA = {
      "src": "stickers/d92c9e3875.webp",
      "w": 535,
      "h": 331,
-     "caption": ""
+     "caption": "",
+     "text": "富興 紅底"
     },
     {
      "src": "stickers/aaede84bc8.webp",
      "w": 318,
      "h": 238,
-     "caption": "黃底白字款（2021/10/21 新增）"
+     "caption": "黃底白字款（2021/10/21 新增）",
+     "text": "富興 黃底白字 159x62mm"
     }
    ],
    "positions": []
@@ -614,7 +630,8 @@ window.STICKER_DATA = {
      "src": "stickers/3a0dfccd92.webp",
      "w": 435,
      "h": 327,
-     "caption": ""
+     "caption": "",
+     "text": "茂順"
     }
    ],
    "positions": []
@@ -636,7 +653,8 @@ window.STICKER_DATA = {
      "src": "stickers/ca6bce0b49.webp",
      "w": 316,
      "h": 125,
-     "caption": ""
+     "caption": "",
+     "text": "展辰"
     }
    ],
    "positions": []
@@ -673,7 +691,8 @@ window.STICKER_DATA = {
      "src": "stickers/29fe75777e.webp",
      "w": 540,
      "h": 337,
-     "caption": ""
+     "caption": "",
+     "text": "崑KS嵩"
     }
    ],
    "positions": []
@@ -710,7 +729,8 @@ window.STICKER_DATA = {
      "src": "stickers/e20a106ecb.webp",
      "w": 333,
      "h": 124,
-     "caption": ""
+     "caption": "",
+     "text": "新立亞"
     }
    ],
    "positions": []
@@ -732,13 +752,15 @@ window.STICKER_DATA = {
      "src": "stickers/96964003c6.webp",
      "w": 547,
      "h": 346,
-     "caption": ""
+     "caption": "",
+     "text": "尊奉"
     },
     {
      "src": "stickers/7a8060d8ec.webp",
      "w": 328,
      "h": 135,
-     "caption": "尊奉＋電話（2022/2/9 新版）"
+     "caption": "尊奉＋電話（2022/2/9 新版）",
+     "text": "尊奉 05-6914101"
     }
    ],
    "positions": []
@@ -760,7 +782,8 @@ window.STICKER_DATA = {
      "src": "stickers/5791ed8638.webp",
      "w": 550,
      "h": 351,
-     "caption": ""
+     "caption": "",
+     "text": "佑昇 0912-408777"
     }
    ],
    "positions": []
@@ -797,7 +820,8 @@ window.STICKER_DATA = {
      "src": "stickers/4116e3bb12.webp",
      "w": 626,
      "h": 286,
-     "caption": ""
+     "caption": "",
+     "text": "大奇 綠 PANTONE 354 C"
     }
    ],
    "positions": []
@@ -849,7 +873,8 @@ window.STICKER_DATA = {
      "src": "stickers/631b3646ba.webp",
      "w": 327,
      "h": 276,
-     "caption": ""
+     "caption": "",
+     "text": "固駩"
     }
    ],
    "positions": []
@@ -871,7 +896,8 @@ window.STICKER_DATA = {
      "src": "stickers/ad4071811a.webp",
      "w": 525,
      "h": 328,
-     "caption": ""
+     "caption": "",
+     "text": "永力達"
     }
    ],
    "positions": []
@@ -938,7 +964,8 @@ window.STICKER_DATA = {
      "src": "stickers/45630bc358.webp",
      "w": 309,
      "h": 121,
-     "caption": ""
+     "caption": "",
+     "text": "錠昌"
     }
    ],
    "positions": []
@@ -1005,7 +1032,8 @@ window.STICKER_DATA = {
      "src": "stickers/8e8dd67c84.webp",
      "w": 1200,
      "h": 468,
-     "caption": ""
+     "caption": "",
+     "text": "偉鋼"
     }
    ],
    "positions": []
@@ -1027,7 +1055,8 @@ window.STICKER_DATA = {
      "src": "stickers/81a8f40081.webp",
      "w": 628,
      "h": 334,
-     "caption": ""
+     "caption": "",
+     "text": "陞隆 連絡電話 0920-064718 紫 PANTONE Violet C 黃 PANTONE Yellow C"
     }
    ],
    "positions": []
@@ -1049,7 +1078,8 @@ window.STICKER_DATA = {
      "src": "stickers/eff3543eea.webp",
      "w": 626,
      "h": 651,
-     "caption": ""
+     "caption": "",
+     "text": "華成 連絡電話 04-25586205 三興 綠1-06"
     }
    ],
    "positions": [
@@ -1084,7 +1114,8 @@ window.STICKER_DATA = {
      "src": "stickers/eff3543eea.webp",
      "w": 626,
      "h": 651,
-     "caption": ""
+     "caption": "",
+     "text": "華成 連絡電話 04-25586205 三興 綠1-06"
     }
    ],
    "positions": [
@@ -1125,7 +1156,8 @@ window.STICKER_DATA = {
      "src": "stickers/0e62b64514.webp",
      "w": 320,
      "h": 147,
-     "caption": ""
+     "caption": "",
+     "text": "承奇 藍-1-50"
     }
    ],
    "positions": []
@@ -1147,7 +1179,8 @@ window.STICKER_DATA = {
      "src": "stickers/851dbe2566.webp",
      "w": 320,
      "h": 125,
-     "caption": ""
+     "caption": "",
+     "text": "寬鴻"
     }
    ],
    "positions": []
@@ -1169,7 +1202,8 @@ window.STICKER_DATA = {
      "src": "stickers/4e8cc01bb5.webp",
      "w": 626,
      "h": 244,
-     "caption": ""
+     "caption": "",
+     "text": "漢唐"
     }
    ],
    "positions": []
@@ -1191,7 +1225,8 @@ window.STICKER_DATA = {
      "src": "stickers/0c601d6377.webp",
      "w": 303,
      "h": 255,
-     "caption": ""
+     "caption": "",
+     "text": "中華保溫"
     }
    ],
    "positions": []
@@ -1213,7 +1248,8 @@ window.STICKER_DATA = {
      "src": "stickers/61fcd05dc0.webp",
      "w": 1200,
      "h": 468,
-     "caption": ""
+     "caption": "",
+     "text": "晶勝"
     }
    ],
    "positions": []
@@ -1250,7 +1286,8 @@ window.STICKER_DATA = {
      "src": "stickers/e6972320fe.webp",
      "w": 329,
      "h": 109,
-     "caption": ""
+     "caption": "",
+     "text": "承翰"
     }
    ],
    "positions": []
@@ -1272,7 +1309,8 @@ window.STICKER_DATA = {
      "src": "stickers/3eba6461d6.webp",
      "w": 1200,
      "h": 468,
-     "caption": ""
+     "caption": "",
+     "text": "竣瑋"
     }
    ],
    "positions": []
@@ -1324,7 +1362,8 @@ window.STICKER_DATA = {
      "src": "stickers/490c656cb7.webp",
      "w": 1200,
      "h": 479,
-     "caption": ""
+     "caption": "",
+     "text": "1404 J-01單"
     }
    ],
    "positions": []
@@ -1361,7 +1400,8 @@ window.STICKER_DATA = {
      "src": "stickers/2a61450613.webp",
      "w": 1200,
      "h": 468,
-     "caption": ""
+     "caption": "",
+     "text": "恆崗"
     }
    ],
    "positions": []
@@ -1413,7 +1453,8 @@ window.STICKER_DATA = {
      "src": "stickers/374f211c7f.webp",
      "w": 1200,
      "h": 468,
-     "caption": ""
+     "caption": "",
+     "text": "固輝"
     }
    ],
    "positions": []
@@ -1435,7 +1476,8 @@ window.STICKER_DATA = {
      "src": "stickers/6258313400.webp",
      "w": 1200,
      "h": 468,
-     "caption": ""
+     "caption": "",
+     "text": "里展"
     }
    ],
    "positions": []
@@ -1457,7 +1499,8 @@ window.STICKER_DATA = {
      "src": "stickers/80040ff058.webp",
      "w": 1200,
      "h": 468,
-     "caption": ""
+     "caption": "",
+     "text": "鉞鑫工程 Yueh-Xing LTD"
     }
    ],
    "positions": []
@@ -1479,7 +1522,8 @@ window.STICKER_DATA = {
      "src": "stickers/d5b344cd68.webp",
      "w": 552,
      "h": 348,
-     "caption": ""
+     "caption": "",
+     "text": "ALSTOM"
     }
    ],
    "positions": []
@@ -1501,7 +1545,8 @@ window.STICKER_DATA = {
      "src": "stickers/18021c3cd1.webp",
      "w": 557,
      "h": 363,
-     "caption": ""
+     "caption": "",
+     "text": "國豐"
     }
    ],
    "positions": []
@@ -1523,7 +1568,8 @@ window.STICKER_DATA = {
      "src": "stickers/df030bdabd.webp",
      "w": 515,
      "h": 325,
-     "caption": ""
+     "caption": "",
+     "text": "廷祐 連絡電話 05-6930188"
     }
    ],
    "positions": []
@@ -1545,7 +1591,8 @@ window.STICKER_DATA = {
      "src": "stickers/1cd39f5588.webp",
      "w": 331,
      "h": 279,
-     "caption": ""
+     "caption": "",
+     "text": "揚築鷹架 04-26154545"
     }
    ],
    "positions": []
@@ -1567,7 +1614,8 @@ window.STICKER_DATA = {
      "src": "stickers/0b20428e6f.webp",
      "w": 344,
      "h": 290,
-     "caption": ""
+     "caption": "",
+     "text": "鼎安"
     }
    ],
    "positions": []
@@ -1589,7 +1637,8 @@ window.STICKER_DATA = {
      "src": "stickers/99deb1facd.webp",
      "w": 513,
      "h": 385,
-     "caption": ""
+     "caption": "",
+     "text": "威志"
     }
    ],
    "positions": []
@@ -1611,7 +1660,8 @@ window.STICKER_DATA = {
      "src": "stickers/cdd0d8cab7.webp",
      "w": 1200,
      "h": 975,
-     "caption": ""
+     "caption": "",
+     "text": "品鏵"
     }
    ],
    "positions": []
@@ -1633,7 +1683,8 @@ window.STICKER_DATA = {
      "src": "stickers/f63da69440.webp",
      "w": 423,
      "h": 266,
-     "caption": ""
+     "caption": "",
+     "text": "元桀"
     }
    ],
    "positions": []
@@ -1655,7 +1706,8 @@ window.STICKER_DATA = {
      "src": "stickers/a68171cbfc.webp",
      "w": 334,
      "h": 137,
-     "caption": ""
+     "caption": "",
+     "text": "巧貹"
     }
    ],
    "positions": []
@@ -1677,7 +1729,8 @@ window.STICKER_DATA = {
      "src": "stickers/a1d02e6495.webp",
      "w": 316,
      "h": 129,
-     "caption": ""
+     "caption": "",
+     "text": "源益"
     }
    ],
    "positions": []
@@ -1699,7 +1752,8 @@ window.STICKER_DATA = {
      "src": "stickers/698a568737.webp",
      "w": 710,
      "h": 284,
-     "caption": ""
+     "caption": "",
+     "text": "揚神工程有限公司"
     }
    ],
    "positions": []
@@ -1721,7 +1775,8 @@ window.STICKER_DATA = {
      "src": "stickers/c86e263696.webp",
      "w": 741,
      "h": 385,
-     "caption": ""
+     "caption": "",
+     "text": "逸鷹 159x62mm"
     }
    ],
    "positions": []
@@ -1743,7 +1798,8 @@ window.STICKER_DATA = {
      "src": "stickers/b47693e495.webp",
      "w": 1166,
      "h": 1200,
-     "caption": ""
+     "caption": "",
+     "text": "富景 永寶通 0937-475995 0918-892428"
     }
    ],
    "positions": []
@@ -1765,13 +1821,15 @@ window.STICKER_DATA = {
      "src": "stickers/2f3bbd02a4.webp",
      "w": 312,
      "h": 153,
-     "caption": ""
+     "caption": "",
+     "text": "廣建 紫底白字 15.9x6.2cm"
     },
     {
      "src": "stickers/c1e96124e9.webp",
      "w": 365,
      "h": 135,
-     "caption": ""
+     "caption": "",
+     "text": "廣建 紫底白字 15.9x6.2cm"
     }
    ],
    "positions": []
@@ -1793,7 +1851,8 @@ window.STICKER_DATA = {
      "src": "stickers/2e0c591aff.webp",
      "w": 163,
      "h": 81,
-     "caption": ""
+     "caption": "",
+     "text": "勇泰鷹架 0970-677-355"
     }
    ],
    "positions": []
@@ -1815,7 +1874,8 @@ window.STICKER_DATA = {
      "src": "stickers/9ac6d5f6ec.webp",
      "w": 610,
      "h": 252,
-     "caption": ""
+     "caption": "",
+     "text": "宇安成 主架 STK500 φ48.6mm T:2.5mm 3M 11.94kg 橫桿 STK500 φ42.7mm T:2.3mm 1.8M 4.78kg 歐盟 EN 12810-1 認證"
     }
    ],
    "positions": []
@@ -1837,7 +1897,8 @@ window.STICKER_DATA = {
      "src": "stickers/d7f9f032a0.webp",
      "w": 850,
      "h": 1200,
-     "caption": ""
+     "caption": "",
+     "text": "杉禾鷹架 0965-105265"
     }
    ],
    "positions": []
@@ -1859,7 +1920,8 @@ window.STICKER_DATA = {
      "src": "stickers/367d49ac99.webp",
      "w": 710,
      "h": 290,
-     "caption": ""
+     "caption": "",
+     "text": "信嬅"
     }
    ],
    "positions": []
@@ -1881,7 +1943,8 @@ window.STICKER_DATA = {
      "src": "stickers/47004ed3e8.webp",
      "w": 349,
      "h": 554,
-     "caption": ""
+     "caption": "",
+     "text": "森岳鷹架 橫桿 1.395m 0.779m 1.829m 04-26570833 主架 4P"
     }
    ],
    "positions": []
@@ -1903,7 +1966,8 @@ window.STICKER_DATA = {
      "src": "stickers/7bb29109a1.webp",
      "w": 321,
      "h": 120,
-     "caption": ""
+     "caption": "",
+     "text": "明旺"
     }
    ],
    "positions": []
@@ -1925,7 +1989,8 @@ window.STICKER_DATA = {
      "src": "stickers/94c66afdf7.webp",
      "w": 353,
      "h": 146,
-     "caption": ""
+     "caption": "",
+     "text": "芮榮"
     }
    ],
    "positions": []
@@ -1947,7 +2012,8 @@ window.STICKER_DATA = {
      "src": "stickers/a51d2d055b.webp",
      "w": 549,
      "h": 345,
-     "caption": ""
+     "caption": "",
+     "text": "麒翔 1000pcs"
     }
    ],
    "positions": []
@@ -1969,7 +2035,8 @@ window.STICKER_DATA = {
      "src": "stickers/0ca866cd87.webp",
      "w": 660,
      "h": 343,
-     "caption": ""
+     "caption": "",
+     "text": "昱勝 159x62mm"
     }
    ],
    "positions": []
@@ -1991,7 +2058,8 @@ window.STICKER_DATA = {
      "src": "stickers/6e8c6b7f82.webp",
      "w": 181,
      "h": 69,
-     "caption": ""
+     "caption": "",
+     "text": "同興"
     }
    ],
    "positions": []
@@ -2013,7 +2081,8 @@ window.STICKER_DATA = {
      "src": "stickers/66a9f25856.webp",
      "w": 533,
      "h": 754,
-     "caption": ""
+     "caption": "",
+     "text": "炳澤"
     }
    ],
    "positions": []
@@ -2035,7 +2104,8 @@ window.STICKER_DATA = {
      "src": "stickers/f4f0865818.webp",
      "w": 871,
      "h": 420,
-     "caption": ""
+     "caption": "",
+     "text": "呂發 LUEFA COMPANY LTD."
     }
    ],
    "positions": []
@@ -2057,7 +2127,8 @@ window.STICKER_DATA = {
      "src": "stickers/08c932d7a6.webp",
      "w": 674,
      "h": 358,
-     "caption": ""
+     "caption": "",
+     "text": "成穎 0976-850-151"
     }
    ],
    "positions": []
@@ -2079,7 +2150,8 @@ window.STICKER_DATA = {
      "src": "stickers/e8389d2006.webp",
      "w": 1024,
      "h": 516,
-     "caption": ""
+     "caption": "",
+     "text": "AIA ASIA"
     }
    ],
    "positions": []
@@ -2101,7 +2173,8 @@ window.STICKER_DATA = {
      "src": "stickers/b0943fb55c.webp",
      "w": 176,
      "h": 76,
-     "caption": ""
+     "caption": "",
+     "text": "晟鈦 037-432284"
     }
    ],
    "positions": []
@@ -2123,7 +2196,8 @@ window.STICKER_DATA = {
      "src": "stickers/66695adb84.webp",
      "w": 318,
      "h": 126,
-     "caption": ""
+     "caption": "",
+     "text": "全宸"
     }
    ],
    "positions": []
@@ -2145,7 +2219,8 @@ window.STICKER_DATA = {
      "src": "stickers/29dae439a9.webp",
      "w": 490,
      "h": 444,
-     "caption": ""
+     "caption": "",
+     "text": "和泰"
     }
    ],
    "positions": []
@@ -2167,7 +2242,8 @@ window.STICKER_DATA = {
      "src": "stickers/41e46e286e.webp",
      "w": 192,
      "h": 75,
-     "caption": ""
+     "caption": "",
+     "text": "大宜昌"
     }
    ],
    "positions": []
@@ -2189,7 +2265,8 @@ window.STICKER_DATA = {
      "src": "stickers/603aba4107.webp",
      "w": 188,
      "h": 76,
-     "caption": ""
+     "caption": "",
+     "text": "品奕"
     }
    ],
    "positions": []
@@ -2211,7 +2288,8 @@ window.STICKER_DATA = {
      "src": "stickers/c8cd3e9c1e.webp",
      "w": 188,
      "h": 75,
-     "caption": ""
+     "caption": "",
+     "text": "士誠"
     }
    ],
    "positions": []
@@ -2233,7 +2311,8 @@ window.STICKER_DATA = {
      "src": "stickers/06e6c33a10.webp",
      "w": 174,
      "h": 69,
-     "caption": ""
+     "caption": "",
+     "text": "長陽-威全"
     }
    ],
    "positions": []
@@ -2255,7 +2334,8 @@ window.STICKER_DATA = {
      "src": "stickers/86fa4ab0a6.webp",
      "w": 318,
      "h": 128,
-     "caption": ""
+     "caption": "",
+     "text": "聖捷 0988-098669"
     }
    ],
    "positions": []
@@ -2277,7 +2357,8 @@ window.STICKER_DATA = {
      "src": "stickers/d81a79d992.webp",
      "w": 321,
      "h": 130,
-     "caption": ""
+     "caption": "",
+     "text": "定立 0928-395566"
     }
    ],
    "positions": []
@@ -2299,7 +2380,8 @@ window.STICKER_DATA = {
      "src": "stickers/ef1cb15ed0.webp",
      "w": 511,
      "h": 292,
-     "caption": ""
+     "caption": "",
+     "text": "山城 0932-674333"
     }
    ],
    "positions": []
@@ -2321,7 +2403,8 @@ window.STICKER_DATA = {
      "src": "stickers/569676f499.webp",
      "w": 442,
      "h": 222,
-     "caption": ""
+     "caption": "",
+     "text": "BES 中華"
     }
    ],
    "positions": []
@@ -2343,7 +2426,8 @@ window.STICKER_DATA = {
      "src": "stickers/7b8714446a.webp",
      "w": 184,
      "h": 73,
-     "caption": ""
+     "caption": "",
+     "text": "佳詺"
     }
    ],
    "positions": []
@@ -2365,7 +2449,8 @@ window.STICKER_DATA = {
      "src": "stickers/e4f0536f72.webp",
      "w": 323,
      "h": 152,
-     "caption": ""
+     "caption": "",
+     "text": "鴻漢營造"
     }
    ],
    "positions": []
@@ -2387,7 +2472,8 @@ window.STICKER_DATA = {
      "src": "stickers/fe9ccfe2e1.webp",
      "w": 637,
      "h": 331,
-     "caption": ""
+     "caption": "",
+     "text": "築九"
     }
    ],
    "positions": []
@@ -2409,7 +2495,8 @@ window.STICKER_DATA = {
      "src": "stickers/4908f0fd61.webp",
      "w": 839,
      "h": 533,
-     "caption": ""
+     "caption": "",
+     "text": "辰光企業社"
     }
    ],
    "positions": []
@@ -2431,7 +2518,8 @@ window.STICKER_DATA = {
      "src": "stickers/9e9f8f82ba.webp",
      "w": 167,
      "h": 75,
-     "caption": ""
+     "caption": "",
+     "text": "和格"
     }
    ],
    "positions": []
@@ -2453,7 +2541,8 @@ window.STICKER_DATA = {
      "src": "stickers/2d46f7a762.webp",
      "w": 266,
      "h": 143,
-     "caption": ""
+     "caption": "",
+     "text": "偉力"
     }
    ],
    "positions": []
@@ -2475,7 +2564,8 @@ window.STICKER_DATA = {
      "src": "stickers/5f3531134b.webp",
      "w": 322,
      "h": 165,
-     "caption": ""
+     "caption": "",
+     "text": "澎匠"
     }
    ],
    "positions": []
@@ -2497,7 +2587,8 @@ window.STICKER_DATA = {
      "src": "stickers/4d2b10880a.webp",
      "w": 780,
      "h": 597,
-     "caption": ""
+     "caption": "",
+     "text": "廷俐鷹架"
     }
    ],
    "positions": []
@@ -2519,7 +2610,8 @@ window.STICKER_DATA = {
      "src": "stickers/170d1ac626.webp",
      "w": 153,
      "h": 382,
-     "caption": ""
+     "caption": "",
+     "text": "永洋"
     }
    ],
    "positions": []
@@ -2556,7 +2648,8 @@ window.STICKER_DATA = {
      "src": "stickers/9b07fe51c2.webp",
      "w": 303,
      "h": 277,
-     "caption": ""
+     "caption": "",
+     "text": "勇鴻"
     }
    ],
    "positions": []
@@ -2593,7 +2686,8 @@ window.STICKER_DATA = {
      "src": "stickers/070c052679.webp",
      "w": 518,
      "h": 692,
-     "caption": ""
+     "caption": "",
+     "text": "磊高營造"
     }
    ],
    "positions": []
@@ -2615,7 +2709,8 @@ window.STICKER_DATA = {
      "src": "stickers/247225d843.webp",
      "w": 463,
      "h": 263,
-     "caption": ""
+     "caption": "",
+     "text": "偉林"
     }
    ],
    "positions": []
@@ -2637,7 +2732,8 @@ window.STICKER_DATA = {
      "src": "stickers/c708a373cd.webp",
      "w": 433,
      "h": 259,
-     "caption": ""
+     "caption": "",
+     "text": "偉林"
     }
    ],
    "positions": []
@@ -2659,7 +2755,8 @@ window.STICKER_DATA = {
      "src": "stickers/adea2e97aa.webp",
      "w": 350,
      "h": 219,
-     "caption": ""
+     "caption": "",
+     "text": "世紀樺欣 CHWE Century Huaxin Wind"
     }
    ],
    "positions": []
@@ -2696,7 +2793,8 @@ window.STICKER_DATA = {
      "src": "stickers/db88ef9af8.webp",
      "w": 302,
      "h": 106,
-     "caption": ""
+     "caption": "",
+     "text": "得琳工程 DELIN CONSTRUCTION"
     }
    ],
    "positions": []
@@ -2718,7 +2816,8 @@ window.STICKER_DATA = {
      "src": "stickers/8bc0582145.webp",
      "w": 607,
      "h": 606,
-     "caption": ""
+     "caption": "",
+     "text": "定誠營造"
     }
    ],
    "positions": [
@@ -2747,13 +2846,15 @@ window.STICKER_DATA = {
      "src": "stickers/01254fcd74.webp",
      "w": 327,
      "h": 193,
-     "caption": "主架用"
+     "caption": "主架用",
+     "text": "井上/井寶"
     },
     {
      "src": "stickers/b5265736e7.webp",
      "w": 368,
      "h": 234,
-     "caption": "橫桿用"
+     "caption": "橫桿用",
+     "text": "井上/井寶"
     }
    ],
    "positions": []
@@ -2775,7 +2876,8 @@ window.STICKER_DATA = {
      "src": "stickers/f6ce15224c.webp",
      "w": 251,
      "h": 178,
-     "caption": ""
+     "caption": "",
+     "text": "聚陞/銑廣"
     }
    ],
    "positions": [
@@ -2799,7 +2901,8 @@ window.STICKER_DATA = {
    "src": "stickers/48ae2fe640.webp",
    "w": 581,
    "h": 303,
-   "caption": "「立鼎」貼紙（客戶待日後補上）"
+   "caption": "「立鼎」貼紙（客戶待日後補上）",
+   "text": "立鼎 159x62mm"
   }
  ]
 };

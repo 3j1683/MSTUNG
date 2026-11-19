@@ -9,9 +9,9 @@
   <title>客戶貼紙</title>
   <meta name="description" content="客戶貼紙樣式、滾字（字模）與貼法位置，依客戶查詢。">
   <meta name="theme-color" content="#2458c6">
-  <link rel="icon" href="favicon.svg?v=1.5.0" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1.5.0">
-  <link rel="manifest" href="manifest.webmanifest?v=1.5.0">
+  <link rel="icon" href="favicon.svg?v=1.5.1" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1.5.1">
+  <link rel="manifest" href="manifest.webmanifest?v=1.5.1">
   <meta name="apple-mobile-web-app-title" content="報修登記">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="zh_TW">
@@ -24,7 +24,7 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="報修登記系統：報修登記與處理進度">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="style.css?v=1.5.0">
+  <link rel="stylesheet" href="style.css?v=1.5.1">
 </head>
 <body class="page-wide">
   <header class="site-header">
@@ -35,7 +35,7 @@
       <a href="help.html">使用說明</a>
     </nav>
     <div class="hero">
-      <img class="hero-icon" src="favicon.svg?v=1.5.0" alt="" width="64" height="64">
+      <img class="hero-icon" src="favicon.svg?v=1.5.1" alt="" width="64" height="64">
       <div class="hero-text">
         <p class="hero-kicker">報修登記系統</p>
         <h1>客戶貼紙</h1>
@@ -49,8 +49,8 @@
       <h2 id="find-title">查詢</h2>
       <div class="s-find">
         <div class="field">
-          <label for="q">客戶、貼紙名稱或字模</label>
-          <input id="q" type="search" maxlength="50" placeholder="例：永清、華成、滾中間" enterkeyhint="search">
+          <label for="q">關鍵字（客戶、貼紙上的字、電話、字模、位置）</label>
+          <input id="q" type="search" maxlength="50" placeholder="例：永清、鷹架、0937、滾中間" enterkeyhint="search">
         </div>
         <div class="field">
           <label for="kind">篩選</label>
@@ -65,6 +65,7 @@
         </div>
       </div>
       <p id="count" class="hint left" role="status" aria-live="polite"></p>
+      <p class="hint left">打一部分就能找，例如「永」「鷹架」「0937」；多個關鍵字用空白隔開，例如「永 鷹架」。</p>
       <p class="hint left">字模尺寸：<span id="die-sizes"></span>。「V」表示有這個字模，「X」表示沒有。</p>
     </section>
 
@@ -90,8 +91,8 @@
     <form method="dialog"><button type="submit" class="secondary">關閉</button></form>
   </dialog>
 
-  <script src="common.js?v=1.5.0"></script>
-  <script src="stickers-data.js?v=1.5.0"></script>
-  <script src="stickers.js?v=1.5.0"></script>
+  <script src="common.js?v=1.5.1"></script>
+  <script src="stickers-data.js?v=1.5.1"></script>
+  <script src="stickers.js?v=1.5.1"></script>
 </body>
 </html>

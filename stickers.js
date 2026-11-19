@@ -33,10 +33,12 @@
 
   function haystack(c) {
     return [c.no, c.name, c.company, c.style, c.position, c.die, c.dieL, c.note]
-      .concat(c.stickers.map(function (s) { return s.caption; }))
+      .concat(c.stickers.map(function (s) { return s.caption + " " + (s.text || ""); }))
       .concat(c.positions.map(function (s) { return s.caption; }))
       .join(" ").toLowerCase();
   }
+  // 比對時忽略空白、連字號、句點，電話寫「0937-234453」或「0937234453」都找得到
+  function squash(s) { return s.replace(/[\s\-－–—_.．、，,()（）]/g, ""); }
   DATA.customers.forEach(function (c) { c._hay = haystack(c); });
   // haystack 先算好；noSticker 在下面定義後再補上「沒有貼紙」關鍵字
 
@@ -124,7 +126,8 @@
       card.appendChild(el("h4", "s-sub", "貼紙樣式"));
       var g = el("div", "s-imgs");
       c.stickers.forEach(function (s, i) {
-        g.appendChild(imageButton(s, (c.name || c.company) + " 貼紙" + (c.stickers.length > 1 ? " " + (i + 1) : "") + (s.caption ? "（" + s.caption + "）" : "")));
+        g.appendChild(imageButton(s, (c.name || c.company) + " 貼紙" + (c.stickers.length > 1 ? " " + (i + 1) : "") +
+          (s.caption ? "（" + s.caption + "）" : "") + (s.text ? "：" + s.text : "")));
       });
       card.appendChild(g);
     }
@@ -156,7 +159,8 @@
     var shown = 0;
     cards.forEach(function (x) {
       var c = x.c;
-      var ok = tokens.every(function (t) { return c._hay.indexOf(t) !== -1; });
+      var flat = c._flat || (c._flat = squash(c._hay));
+      var ok = tokens.every(function (t) { return c._hay.indexOf(t) !== -1 || (squash(t) && flat.indexOf(squash(t)) !== -1); });
       if (ok && kind === "roll") ok = hasRoll(c);
       if (ok && kind === "stick") ok = hasStick(c);
       if (ok && kind === "none") ok = noSticker(c);
@@ -165,7 +169,12 @@
       x.node.hidden = !ok;
       if (ok) shown++;
     });
-    empty.hidden = shown > 0;
+    // 未對應客戶的圖片：沒有關鍵字、或關鍵字符合圖片上的字時才顯示
+    var un = DATA.unmatched || [];
+    var unHay = un.map(function (s) { return (s.caption + " " + (s.text || "")).toLowerCase(); }).join(" ");
+    var unOk = un.length > 0 && !kind && tokens.every(function (t) { return unHay.indexOf(t) !== -1 || (squash(t) && squash(unHay).indexOf(squash(t)) !== -1); });
+    $("unmatched-card").hidden = !unOk;
+    empty.hidden = shown > 0 || unOk;
     $("count").textContent = "共 " + DATA.customers.length + " 家客戶（" + noneCount + " 家沒有貼紙）" +
       (shown !== DATA.customers.length ? "，符合 " + shown + " 家" : "") + "。";
   }
@@ -176,7 +185,6 @@
   if (DATA.unmatched && DATA.unmatched.length) {
     var u = $("unmatched");
     DATA.unmatched.forEach(function (s, i) { u.appendChild(imageButton(s, "未對應圖片 " + (i + 1) + "：" + s.caption)); });
-    $("unmatched-card").hidden = false;
   }
 
   apply();
