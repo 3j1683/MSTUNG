@@ -455,7 +455,9 @@
   $("only-filled").addEventListener("change", renderList);
 
   // ---------- 出貨資料 ----------
-  var FIELDS = { "f-date": "date", "f-cust": "cust", "f-contract": "contract", "f-trip": "trip" };
+  var FIELDS = { "f-date": "date", "f-cust": "cust" };
+  // v1.3.1 起不再使用合約編號、車次，清掉舊版留下的資料
+  if ("contract" in S.f || "trip" in S.f) { delete S.f.contract; delete S.f.trip; save(); }
   Object.keys(FIELDS).forEach(function (id) {
     var k = FIELDS[id];
     var node = $(id);
@@ -505,8 +507,7 @@
 
   function listText() {
     var f = S.f, h = totals("heavy"), l = totals("light");
-    var txt = "日期：" + $("f-date").value + "　客戶：" + (f.cust || "") + "　合約編號：" + (f.contract || "") +
-      "　車次：" + (f.trip || "") + "　車種：" + truckType() + "\n";
+    var txt = "日期：" + $("f-date").value + "　客戶：" + (f.cust || "") + "　車種：" + truckType() + "\n";
     KINDS.forEach(function (k) {
       var rows = ITEMS[k].filter(qtyOf);
       if (!rows.length) return;
