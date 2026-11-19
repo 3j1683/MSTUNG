@@ -4,7 +4,7 @@ window.STICKER_DATA = {
  "title": "20160714字模統計",
  "headers": {
   "dieL": "廠商（大）64.5×30mm",
-  "dieM": "年（中）",
+  "dieM": "年（中）46.5×30mm",
   "dieS": "月（小）35×30mm"
  },
  "customers": [
@@ -2799,7 +2799,7 @@ window.STICKER_DATA = {
    "src": "stickers/48ae2fe640.webp",
    "w": 581,
    "h": 303,
-   "caption": "「立鼎」貼紙（表中在逸鷹、富景附近，找不到同名客戶）"
+   "caption": "「立鼎」貼紙（客戶待日後補上）"
   }
  ]
 };
