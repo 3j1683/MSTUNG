@@ -320,3 +320,221 @@ input[type="search"] {
 .help dd { margin: 2px 0 0; }
 
 .site-footer { padding-bottom: 32px; color: var(--muted); font-size: 0.85rem; text-align: center; line-height: 1.8; }
+
+/* ===================== 重量試算（weight.html） ===================== */
+.page-wide .site-header,
+.page-wide main,
+.page-wide .site-footer { max-width: 980px; }
+.w-num, .w-unit, .w-sub, .w-no, .w-val, .w-tot b, .w-code { font-variant-numeric: tabular-nums; }
+
+/* 固定在上方的合計列 */
+.w-totals {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 4px 18px;
+  max-width: 980px;
+  margin: 0 auto 16px;
+  padding: 10px max(16px, env(safe-area-inset-left)) 10px max(16px, env(safe-area-inset-right));
+  background: #1f3f80;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+@media (min-width: 1012px) { .w-totals { max-width: 948px; border-radius: 12px; } }
+.w-tot { display: flex; flex-direction: column; align-items: flex-end; }
+.w-tot small { font-size: 0.72rem; letter-spacing: 0.06em; opacity: 0.8; }
+.w-tot b { font-size: 1.15rem; line-height: 1.2; }
+.w-tot b i { font-style: normal; font-size: 0.75rem; margin-left: 3px; opacity: 0.8; }
+.w-tot.w-big b { font-size: 1.5rem; color: #ffd27a; }
+
+/* 出貨資料 */
+.w-ticket { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0 12px; }
+.w-ticket .field { margin-bottom: 8px; }
+.w-ticket input { width: 100%; }
+
+/* 車輛試算 */
+.w-seg { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.w-seg button {
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-weight: 700;
+}
+.w-seg button small { margin-left: 4px; font-weight: 500; opacity: 0.8; }
+.w-seg button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+.w-cap { max-width: 240px; }
+.w-verdict { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; margin: 4px 0 10px; }
+.w-verdict b { font-size: 1.3rem; }
+.w-pill { font-size: 0.82rem; font-weight: 700; padding: 2px 10px; border-radius: 999px; border: 1px solid currentColor; }
+.w-pill.ok { color: var(--low); }
+.w-pill.over { color: var(--high); }
+.w-muted { color: var(--muted); font-size: 0.92rem; }
+.w-trucks { display: grid; gap: 8px; margin-bottom: 8px; }
+.w-truck { display: grid; grid-template-columns: 110px minmax(0, 1fr) 140px; gap: 10px; align-items: center; font-size: 0.92rem; }
+.w-lbl { color: var(--muted); }
+.w-lbl b { color: var(--text); }
+.w-meter { height: 12px; border-radius: 6px; background: var(--bg); border: 1px solid var(--border); overflow: hidden; }
+.w-meter i { display: block; height: 100%; background: var(--accent); }
+.w-truck.full .w-meter i { background: var(--mid); }
+.w-val { text-align: right; }
+
+/* 品項 */
+.w-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; margin-bottom: 12px; }
+.w-tabs { display: inline-flex; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.w-tabs button {
+  min-height: 44px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 0 16px;
+}
+.w-tabs button .w-num { font-size: 0.8rem; font-weight: 500; margin-left: 4px; }
+.w-tabs button[aria-selected="true"] { background: var(--accent); color: var(--accent-text); }
+.w-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
+.w-actions button { min-height: 44px; }
+.w-warn { color: var(--high) !important; border-color: var(--high) !important; }
+.w-warn-solid { background: var(--high); border-color: var(--high); color: #ffffff; }
+.w-confirm { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 8px; font-weight: 600; }
+
+.w-list { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.w-grp {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 12px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+.w-grp .w-num { color: var(--text); font-weight: 600; }
+.w-row {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 84px 132px 96px;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 12px;
+  border-top: 1px solid var(--border);
+}
+.w-row.on { background: color-mix(in srgb, var(--accent) 10%, transparent); }
+.w-head { border-top: 0; font-size: 0.8rem; color: var(--muted); }
+.w-head div:nth-child(3), .w-head div:nth-child(5) { text-align: right; }
+.w-head div:nth-child(4) { text-align: center; }
+.w-no { font-size: 0.8rem; color: var(--muted); }
+.w-name { min-width: 0; }
+.w-name b { font-weight: 600; }
+.w-name span { display: block; font-size: 0.82rem; color: var(--muted); overflow-wrap: anywhere; }
+.w-code {
+  margin-left: 6px;
+  padding: 0 6px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.w-edit { display: flex; flex-direction: column; gap: 4px; }
+.w-edit input,
+.w-unit input {
+  width: 100%;
+  min-height: 40px;
+  padding: 6px 8px;
+  border: 1px dashed var(--accent);
+  border-radius: 6px;
+  background: var(--card);
+  color: var(--text);
+  font: inherit;
+  font-size: 16px;
+}
+.w-edit input.w-small { min-height: 36px; font-size: 16px; }
+.w-unit { text-align: right; color: var(--muted); font-size: 0.92rem; }
+.w-unit input { text-align: right; }
+.w-qty { display: flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--card); }
+.w-qty button {
+  flex: none;
+  width: 40px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.w-qty input {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  text-align: center;
+  font: inherit;
+  font-size: 16px;
+  padding: 0 2px;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+.w-qty input::-webkit-inner-spin-button,
+.w-qty input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.w-sub { text-align: right; font-weight: 700; }
+.w-sub.zero { color: var(--border); font-weight: 500; }
+.w-empty { margin: 0; padding: 24px; text-align: center; color: var(--muted); }
+
+/* 明細與包裝參考 */
+.w-notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 16px; }
+.w-summary { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.w-summary td { padding: 6px 0; border-top: 1px solid var(--border); vertical-align: top; }
+.w-summary td:last-child { text-align: right; white-space: nowrap; padding-left: 10px; }
+.w-summary tr:first-child td { border-top: 0; }
+.w-sum-total td { font-weight: 700; }
+.w-pack { margin: 0; padding-left: 1.3em; color: var(--muted); font-size: 0.92rem; }
+
+.w-toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(20px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 0.92rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+.w-toast.show { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .w-toast { transition: none; } }
+
+@media (max-width: 640px) {
+  .w-row {
+    grid-template-columns: minmax(0, 1fr) 128px;
+    grid-template-areas: "name qty" "unit sub";
+    row-gap: 4px;
+  }
+  .w-row .w-no { display: none; }
+  .w-row .w-name { grid-area: name; }
+  .w-row .w-qty { grid-area: qty; }
+  .w-row .w-unit { grid-area: unit; text-align: left; }
+  .w-row .w-unit::before { content: "單重 "; }
+  .w-row .w-unit input { width: 110px; text-align: left; }
+  .w-row .w-sub { grid-area: sub; }
+  .w-head { display: none; }
+  .w-truck { grid-template-columns: minmax(0, 1fr) auto; row-gap: 2px; }
+  .w-truck .w-meter { grid-column: 1 / -1; grid-row: 2; }
+  /* 手機：只留車數、總數、總重一行；重型、輕型的重量顯示在分頁按鈕上 */
+  .w-totals { flex-wrap: nowrap; align-items: flex-end; gap: 14px; padding-top: 8px; padding-bottom: 8px; }
+  .w-tot-split { display: none; }
+  .w-tot b { font-size: 1.05rem; }
+  .w-tot.w-big { margin-left: auto; }
+  .w-tot.w-big b { font-size: 1.3rem; }
+}
