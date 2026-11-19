@@ -1,7 +1,7 @@
 {
   "name": "報修登記系統",
   "short_name": "報修登記",
-  "description": "報修登記、交期詢問、重量試算、客戶貼紙與處理進度查詢",
+  "description": "報修登記、重量試算、客戶貼紙與處理進度查詢",
   "lang": "zh-Hant-TW",
   "start_url": "./",
   "scope": "./",
@@ -38,10 +38,6 @@
     {
       "name": "報修登記",
       "url": "./"
-    },
-    {
-      "name": "交期詢問",
-      "url": "delivery.html"
     },
     {
       "name": "重量試算",
