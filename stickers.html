@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="color-scheme" content="light dark">
+  <title>客戶貼紙</title>
+  <meta name="description" content="客戶貼紙樣式、滾字（字模）與貼法位置，依客戶查詢。">
+  <meta name="theme-color" content="#2458c6">
+  <link rel="icon" href="favicon.svg?v=1.4.0" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1.4.0">
+  <link rel="manifest" href="manifest.webmanifest?v=1.4.0">
+  <meta name="apple-mobile-web-app-title" content="報修登記">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:site_name" content="報修登記系統">
+  <meta property="og:title" content="報修登記系統｜客戶貼紙">
+  <meta property="og:description" content="客戶貼紙樣式、滾字（字模）與貼法位置，依客戶查詢。">
+  <meta property="og:url" content="https://3j1683.github.io/MSTUNG/stickers.html">
+  <meta property="og:image" content="https://3j1683.github.io/MSTUNG/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="報修登記系統：報修、交期詢問、處理進度">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="style.css?v=1.4.0">
+</head>
+<body class="page-wide">
+  <header class="site-header">
+    <nav class="site-nav" aria-label="頁面切換">
+      <a href="./">報修登記</a>
+      <a href="delivery.html">交期詢問</a>
+      <a href="weight.html">重量試算</a>
+      <a href="stickers.html" aria-current="page">客戶貼紙</a>
+      <a href="help.html">使用說明</a>
+    </nav>
+    <div class="hero">
+      <img class="hero-icon" src="favicon.svg?v=1.4.0" alt="" width="64" height="64">
+      <div class="hero-text">
+        <p class="hero-kicker">報修登記系統</p>
+        <h1>客戶貼紙</h1>
+        <p class="subtitle">依客戶查詢貼紙樣式、滾字（字模）與貼法位置。點圖片可以放大。</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="card" aria-labelledby="find-title">
+      <h2 id="find-title">查詢</h2>
+      <div class="s-find">
+        <div class="field">
+          <label for="q">客戶、貼紙名稱或字模</label>
+          <input id="q" type="search" maxlength="50" placeholder="例：永清、華成、滾中間" enterkeyhint="search">
+        </div>
+        <div class="field">
+          <label for="kind">篩選</label>
+          <select id="kind">
+            <option value="">全部客戶</option>
+            <option value="roll">有滾字</option>
+            <option value="stick">有貼紙</option>
+            <option value="img">有貼紙圖片</option>
+            <option value="pos">有貼法位置圖</option>
+          </select>
+        </div>
+      </div>
+      <p id="count" class="hint left" role="status" aria-live="polite"></p>
+      <p class="hint left">字模尺寸：<span id="die-sizes"></span>。「V」表示有這個字模，「X」表示沒有。</p>
+    </section>
+
+    <div id="list" class="s-list"></div>
+
+    <section class="card" id="unmatched-card" aria-labelledby="unmatched-title" hidden>
+      <h2 id="unmatched-title">未對應客戶的圖片</h2>
+      <p class="hint left">原表中有這些圖片，但找不到對應的客戶名稱，請確認後告訴系統管理員。</p>
+      <div id="unmatched" class="s-imgs"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    資料來源：<span id="source"></span>。若有變更請通知系統管理員更新。<br>
+    報修登記系統 <span id="app-version"></span>
+  </footer>
+
+  <dialog id="viewer" class="s-viewer" aria-labelledby="viewer-cap">
+    <figure>
+      <img id="viewer-img" alt="">
+      <figcaption id="viewer-cap"></figcaption>
+    </figure>
+    <form method="dialog"><button type="submit" class="secondary">關閉</button></form>
+  </dialog>
+
+  <script src="common.js?v=1.4.0"></script>
+  <script src="stickers-data.js?v=1.4.0"></script>
+  <script src="stickers.js?v=1.4.0"></script>
+</body>
+</html>
