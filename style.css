@@ -538,3 +538,70 @@ input[type="search"] {
   .w-tot.w-big { margin-left: auto; }
   .w-tot.w-big b { font-size: 1.3rem; }
 }
+
+/* ===================== 客戶貼紙（stickers.html） ===================== */
+.s-find { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 0 12px; }
+@media (max-width: 560px) { .s-find { grid-template-columns: minmax(0, 1fr); } }
+.s-find .field { margin-bottom: 10px; }
+.s-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 16px;
+}
+.s-list .card { margin-bottom: 0; }
+.s-list [hidden] { display: none; }
+.s-head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+.s-head h3 { margin: 0; font-size: 1.2rem; overflow-wrap: anywhere; }
+.s-no { flex: none; font-size: 0.8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.s-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.s-tag {
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+.s-tag.roll { color: var(--accent); border-color: currentColor; }
+.s-tag.stick { color: var(--low); border-color: currentColor; }
+.s-dl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; margin: 0 0 8px; font-size: 0.92rem; }
+.s-dl dt { color: var(--muted); white-space: nowrap; }
+.s-dl dd { margin: 0; overflow-wrap: anywhere; white-space: pre-line; }
+.s-sub { margin: 12px 0 6px; font-size: 0.9rem; color: var(--muted); }
+.s-imgs { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; }
+.s-pos { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+.s-fig { margin: 0; }
+.s-fig figcaption { margin-top: 4px; font-size: 0.8rem; color: var(--muted); overflow-wrap: anywhere; }
+.s-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 96px;
+  min-height: 0;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #ffffff;
+  cursor: zoom-in;
+}
+.s-pos .s-thumb { height: 130px; }
+.s-thumb img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+.s-empty { color: var(--muted); text-align: center; }
+
+.s-viewer {
+  max-width: min(96vw, 1100px);
+  max-height: 94vh;
+  padding: 12px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--card);
+  color: var(--text);
+}
+.s-viewer::backdrop { background: rgba(0, 0, 0, 0.75); }
+.s-viewer figure { margin: 0; }
+.s-viewer img { display: block; max-width: 100%; max-height: 78vh; margin: 0 auto; background: #ffffff; border-radius: 6px; }
+.s-viewer figcaption { margin: 8px 0; text-align: center; font-size: 0.95rem; overflow-wrap: anywhere; }
+.s-viewer form { display: flex; justify-content: center; }
