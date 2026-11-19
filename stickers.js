@@ -12,14 +12,23 @@
 
   // 「滾中間-貼頭邊」→「滾中間」「貼頭邊」
   function positionParts(s) {
-    return String(s || "").split(/[-、\/\n]+|\s{1,}(?=[滾貼])/).map(function (x) { return x.trim(); }).filter(Boolean);
+    return String(s || "").split(/[-、，,\/\n]+|\s{1,}(?=[滾貼])/).map(function (x) { return x.trim(); })
+      .filter(function (x) { return x && !/^[×X無]/.test(x); }); // 「×貼紙」「無」改用「沒有貼紙」提示
+  }
+
+  // 沒有貼紙：檔案明確寫「無／X／×貼紙」，或完全沒有寫貼紙（沒有貼紙公司、樣式、圖片，位置也沒有「貼」）
+  function isNeg(s) { return /^(無|X|×|x)$/.test(String(s || "").trim()); }
+  function noSticker(c) {
+    var explicit = isNeg(c.company) || isNeg(c.style) || /^[×X]\s*貼紙/.test(c.position) || (isNeg(c.position) && !c.company);
+    var missing = !c.stickers.length && !c.company && !c.style && !/貼/.test(c.position);
+    return explicit || missing;
   }
 
   function hasRoll(c) {
     return /滾/.test(c.position) || (c.die && !/^[X×x]$/.test(c.die));
   }
   function hasStick(c) {
-    return /貼/.test(c.position) || c.stickers.length > 0;
+    return !noSticker(c) && (/貼/.test(c.position) || c.stickers.length > 0 || !!c.company);
   }
 
   function haystack(c) {
@@ -29,6 +38,8 @@
       .join(" ").toLowerCase();
   }
   DATA.customers.forEach(function (c) { c._hay = haystack(c); });
+  // haystack 先算好；noSticker 在下面定義後再補上「沒有貼紙」關鍵字
+
 
   // ---------- 放大檢視 ----------
   var viewer = $("viewer");
@@ -77,14 +88,23 @@
     head.appendChild(el("h3", null, c.name || c.company));
     card.appendChild(head);
 
+    var none = noSticker(c);
     var parts = positionParts(c.position);
-    if (parts.length) {
+    if (parts.length || none) {
       var tags = el("div", "s-tags");
+      if (none) tags.appendChild(el("span", "s-tag none", "沒有貼紙"));
       parts.forEach(function (p) {
         var cls = /^滾/.test(p) ? "s-tag roll" : /^貼/.test(p) ? "s-tag stick" : "s-tag";
         tags.appendChild(el("span", cls, p));
       });
       card.appendChild(tags);
+    }
+    if (none) {
+      var warn = el("p", "s-warn", "⚠ 這位客戶沒有貼紙。");
+      warn.setAttribute("role", "note");
+      warn.appendChild(el("span", null, hasRoll(c) ? "只滾字，不用貼紙。" : "檔案沒有寫貼紙。"));
+      card.appendChild(warn);
+      card.classList.add("s-nosticker");
     }
 
     var dl = el("dl", "s-dl");
@@ -127,6 +147,9 @@
   empty.hidden = true;
   list.appendChild(empty);
 
+  DATA.customers.forEach(function (c) { if (noSticker(c)) c._hay += " 沒有貼紙 無貼紙"; });
+  var noneCount = DATA.customers.filter(noSticker).length;
+
   function apply() {
     var tokens = $("q").value.trim().toLowerCase().split(/\s+/).filter(Boolean);
     var kind = $("kind").value;
@@ -136,13 +159,15 @@
       var ok = tokens.every(function (t) { return c._hay.indexOf(t) !== -1; });
       if (ok && kind === "roll") ok = hasRoll(c);
       if (ok && kind === "stick") ok = hasStick(c);
+      if (ok && kind === "none") ok = noSticker(c);
       if (ok && kind === "img") ok = c.stickers.length > 0;
       if (ok && kind === "pos") ok = c.positions.length > 0;
       x.node.hidden = !ok;
       if (ok) shown++;
     });
     empty.hidden = shown > 0;
-    $("count").textContent = "共 " + DATA.customers.length + " 家客戶" + (shown !== DATA.customers.length ? "，符合 " + shown + " 家" : "") + "。";
+    $("count").textContent = "共 " + DATA.customers.length + " 家客戶（" + noneCount + " 家沒有貼紙）" +
+      (shown !== DATA.customers.length ? "，符合 " + shown + " 家" : "") + "。";
   }
   $("q").addEventListener("input", apply);
   $("kind").addEventListener("change", apply);
