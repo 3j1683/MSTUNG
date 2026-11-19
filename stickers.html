@@ -9,9 +9,9 @@
   <title>客戶貼紙</title>
   <meta name="description" content="客戶貼紙樣式、滾字（字模）與貼法位置，依客戶查詢。">
   <meta name="theme-color" content="#2458c6">
-  <link rel="icon" href="favicon.svg?v=1.5.1" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1.5.1">
-  <link rel="manifest" href="manifest.webmanifest?v=1.5.1">
+  <link rel="icon" href="favicon.svg?v=1.6.0" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1.6.0">
+  <link rel="manifest" href="manifest.webmanifest?v=1.6.0">
   <meta name="apple-mobile-web-app-title" content="報修登記">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="zh_TW">
@@ -24,7 +24,7 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="報修登記系統：報修登記與處理進度">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="style.css?v=1.5.1">
+  <link rel="stylesheet" href="style.css?v=1.6.0">
 </head>
 <body class="page-wide">
   <header class="site-header">
@@ -35,7 +35,7 @@
       <a href="help.html">使用說明</a>
     </nav>
     <div class="hero">
-      <img class="hero-icon" src="favicon.svg?v=1.5.1" alt="" width="64" height="64">
+      <img class="hero-icon" src="favicon.svg?v=1.6.0" alt="" width="64" height="64">
       <div class="hero-text">
         <p class="hero-kicker">報修登記系統</p>
         <h1>客戶貼紙</h1>
@@ -64,12 +64,17 @@
           </select>
         </div>
       </div>
+      <div class="s-view" role="group" aria-label="顯示方式">
+        <button type="button" data-view="cards" aria-pressed="true">客戶卡片</button>
+        <button type="button" data-view="gallery" aria-pressed="false">只看貼紙圖</button>
+      </div>
       <p id="count" class="hint left" role="status" aria-live="polite"></p>
       <p class="hint left">打一部分就能找，例如「永」「鷹架」「0937」；多個關鍵字用空白隔開，例如「永 鷹架」。</p>
       <p class="hint left">字模尺寸：<span id="die-sizes"></span>。「V」表示有這個字模，「X」表示沒有。</p>
     </section>
 
     <div id="list" class="s-list"></div>
+    <div id="gallery" class="s-gallery" hidden></div>
 
     <section class="card" id="unmatched-card" aria-labelledby="unmatched-title" hidden>
       <h2 id="unmatched-title">未對應客戶的圖片</h2>
@@ -84,15 +89,19 @@
   </footer>
 
   <dialog id="viewer" class="s-viewer" aria-labelledby="viewer-cap">
-    <figure>
+    <div class="s-zoomwrap" id="viewer-wrap">
       <img id="viewer-img" alt="">
-      <figcaption id="viewer-cap"></figcaption>
-    </figure>
-    <form method="dialog"><button type="submit" class="secondary">關閉</button></form>
+    </div>
+    <p id="viewer-cap" class="s-viewer-cap"></p>
+    <div class="s-viewer-actions">
+      <button type="button" id="zoom-btn" class="secondary">放大</button>
+      <button type="button" id="orig-btn" class="secondary" hidden>看原圖</button>
+      <form method="dialog"><button type="submit">關閉</button></form>
+    </div>
   </dialog>
 
-  <script src="common.js?v=1.5.1"></script>
-  <script src="stickers-data.js?v=1.5.1"></script>
-  <script src="stickers.js?v=1.5.1"></script>
+  <script src="common.js?v=1.6.0"></script>
+  <script src="stickers-data.js?v=1.6.0"></script>
+  <script src="stickers.js?v=1.6.0"></script>
 </body>
 </html>

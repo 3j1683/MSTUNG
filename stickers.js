@@ -45,20 +45,50 @@
 
   // ---------- 放大檢視 ----------
   var viewer = $("viewer");
+  var vImg = $("viewer-img");
+  var vWrap = $("viewer-wrap");
+  var zoomBtn = $("zoom-btn");
+  var origBtn = $("orig-btn");
+  var current = null;   // 目前放大的圖片
+  var showingFull = false;
+
+  function setZoom(on) {
+    vWrap.classList.toggle("zoomed", on);
+    zoomBtn.textContent = on ? "縮小" : "放大";
+    zoomBtn.setAttribute("aria-pressed", String(on));
+    if (on) {
+      // 放大後先捲到中間
+      requestAnimationFrame(function () {
+        vWrap.scrollLeft = (vWrap.scrollWidth - vWrap.clientWidth) / 2;
+        vWrap.scrollTop = (vWrap.scrollHeight - vWrap.clientHeight) / 2;
+      });
+    }
+  }
+  function showSrc(full) {
+    showingFull = full;
+    vImg.src = full ? current.full.src : current.src;
+    origBtn.textContent = full ? "看貼紙特寫" : "看原圖";
+  }
   function openViewer(img, caption) {
-    $("viewer-img").src = img.src;
-    $("viewer-img").alt = caption;
+    current = img;
+    vImg.alt = caption;
     $("viewer-cap").textContent = caption;
+    origBtn.hidden = !img.full;
+    showSrc(false);
+    setZoom(false);
     if (typeof viewer.showModal === "function") viewer.showModal();
     else window.open(img.src, "_blank", "noopener");
   }
+  zoomBtn.addEventListener("click", function () { setZoom(!vWrap.classList.contains("zoomed")); });
+  vImg.addEventListener("click", function () { setZoom(!vWrap.classList.contains("zoomed")); }); // 點圖片也能放大／縮小
+  origBtn.addEventListener("click", function () { showSrc(!showingFull); setZoom(false); });
   viewer.addEventListener("click", function (e) {
     if (e.target === viewer) viewer.close(); // 點背景關閉
   });
-  viewer.addEventListener("close", function () { $("viewer-img").removeAttribute("src"); });
+  viewer.addEventListener("close", function () { vImg.removeAttribute("src"); current = null; });
 
-  function imageButton(img, label) {
-    var fig = el("figure", "s-fig");
+  function imageButton(img, label, extraClass) {
+    var fig = el("figure", "s-fig" + (extraClass ? " " + extraClass : ""));
     var b = el("button", "s-thumb");
     b.type = "button";
     b.setAttribute("aria-label", "放大：" + label);
@@ -124,7 +154,7 @@
 
     if (c.stickers.length) {
       card.appendChild(el("h4", "s-sub", "貼紙樣式"));
-      var g = el("div", "s-imgs");
+      var g = el("div", "s-imgs s-big");
       c.stickers.forEach(function (s, i) {
         g.appendChild(imageButton(s, (c.name || c.company) + " 貼紙" + (c.stickers.length > 1 ? " " + (i + 1) : "") +
           (s.caption ? "（" + s.caption + "）" : "") + (s.text ? "：" + s.text : "")));
@@ -146,6 +176,37 @@
   var cards = DATA.customers.map(function (c) { return { c: c, node: renderCard(c) }; });
   var list = $("list");
   cards.forEach(function (x) { list.appendChild(x.node); });
+  // 「只看貼紙圖」：每張貼紙一格，大圖顯示
+  var gallery = $("gallery");
+  var tiles = [];
+  cards.forEach(function (x) {
+    var c = x.c;
+    c.stickers.forEach(function (s, i) {
+      var name = c.name || c.company;
+      var fig = imageButton(s, name + " 貼紙" + (c.stickers.length > 1 ? " " + (i + 1) : "") +
+        (s.caption ? "（" + s.caption + "）" : "") + (s.text ? "：" + s.text : ""), "s-tile");
+      var cap = fig.querySelector("figcaption") || fig.appendChild(el("figcaption"));
+      cap.replaceChildren(el("b", null, (c.no ? "No." + c.no + " " : "") + name));
+      if (s.caption) cap.appendChild(el("span", null, s.caption));
+      gallery.appendChild(fig);
+      tiles.push({ c: c, node: fig });
+    });
+  });
+  var gEmpty = el("p", "card s-empty", "符合的客戶沒有貼紙圖片。");
+  gEmpty.hidden = true;
+  gallery.appendChild(gEmpty);
+
+  var VIEW_KEY = "mstung-sticker-view";
+  var view = "cards";
+  try { if (localStorage.getItem(VIEW_KEY) === "gallery") view = "gallery"; } catch (e) { /* 略過 */ }
+  document.querySelectorAll(".s-view button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      view = b.dataset.view;
+      try { localStorage.setItem(VIEW_KEY, view); } catch (e) { /* 略過 */ }
+      apply();
+    });
+  });
+
   var empty = el("p", "card s-empty", "找不到符合的客戶，試試其他關鍵字或篩選。");
   empty.hidden = true;
   list.appendChild(empty);
@@ -167,8 +228,17 @@
       if (ok && kind === "img") ok = c.stickers.length > 0;
       if (ok && kind === "pos") ok = c.positions.length > 0;
       x.node.hidden = !ok;
+      x.ok = ok;
       if (ok) shown++;
     });
+    var tilesShown = 0;
+    var okSet = new Set(cards.filter(function (x) { return x.ok; }).map(function (x) { return x.c; }));
+    tiles.forEach(function (t) { t.node.hidden = !okSet.has(t.c); if (!t.node.hidden) tilesShown++; });
+    var g = view === "gallery";
+    list.hidden = g;
+    gallery.hidden = !g;
+    gEmpty.hidden = tilesShown > 0;
+    document.querySelectorAll(".s-view button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.view === view)); });
     // 未對應客戶的圖片：沒有關鍵字、或關鍵字符合圖片上的字時才顯示
     var un = DATA.unmatched || [];
     var unHay = un.map(function (s) { return (s.caption + " " + (s.text || "")).toLowerCase(); }).join(" ");
@@ -176,7 +246,7 @@
     $("unmatched-card").hidden = !unOk;
     empty.hidden = shown > 0 || unOk;
     $("count").textContent = "共 " + DATA.customers.length + " 家客戶（" + noneCount + " 家沒有貼紙）" +
-      (shown !== DATA.customers.length ? "，符合 " + shown + " 家" : "") + "。";
+      (shown !== DATA.customers.length ? "，符合 " + shown + " 家" : "") + (g ? "，顯示 " + tilesShown + " 張貼紙圖" : "") + "。";
   }
   $("q").addEventListener("input", apply);
   $("kind").addEventListener("change", apply);

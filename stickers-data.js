@@ -45,11 +45,16 @@ window.STICKER_DATA = {
    "note": "",
    "stickers": [
     {
-     "src": "stickers/459db73d69.webp",
-     "w": 548,
-     "h": 341,
+     "src": "stickers/459db73d69-s.webp",
+     "w": 345,
+     "h": 129,
      "caption": "",
-     "text": "政航"
+     "text": "政航",
+     "full": {
+      "src": "stickers/459db73d69.webp",
+      "w": 548,
+      "h": 341
+     }
     }
    ],
    "positions": []
@@ -106,11 +111,16 @@ window.STICKER_DATA = {
    "note": "105/10 改貼中間",
    "stickers": [
     {
-     "src": "stickers/9c7b200e39.webp",
-     "w": 414,
-     "h": 311,
+     "src": "stickers/9c7b200e39-s.webp",
+     "w": 359,
+     "h": 133,
      "caption": "",
-     "text": "大豐燿"
+     "text": "大豐燿",
+     "full": {
+      "src": "stickers/9c7b200e39.webp",
+      "w": 414,
+      "h": 311
+     }
     }
    ],
    "positions": []
@@ -379,11 +389,16 @@ window.STICKER_DATA = {
    "note": "",
    "stickers": [
     {
-     "src": "stickers/46534bb10a.webp",
-     "w": 535,
-     "h": 333,
+     "src": "stickers/46534bb10a-s.webp",
+     "w": 338,
+     "h": 132,
      "caption": "",
-     "text": "鴻麒"
+     "text": "鴻麒",
+     "full": {
+      "src": "stickers/46534bb10a.webp",
+      "w": 535,
+      "h": 333
+     }
     }
    ],
    "positions": []
@@ -574,11 +589,16 @@ window.STICKER_DATA = {
      "text": "永清鷹架 橫桿 1.829m"
     },
     {
-     "src": "stickers/b02e2b3ccb.webp",
-     "w": 581,
-     "h": 361,
+     "src": "stickers/b02e2b3ccb-s.webp",
+     "w": 365,
+     "h": 143,
      "caption": "",
-     "text": "永清鷹架 橫桿 0.779m"
+     "text": "永清鷹架 橫桿 0.779m",
+     "full": {
+      "src": "stickers/b02e2b3ccb.webp",
+      "w": 581,
+      "h": 361
+     }
     }
    ],
    "positions": []
@@ -597,11 +617,16 @@ window.STICKER_DATA = {
    "note": "",
    "stickers": [
     {
-     "src": "stickers/d92c9e3875.webp",
-     "w": 535,
-     "h": 331,
+     "src": "stickers/d92c9e3875-s.webp",
+     "w": 336,
+     "h": 134,
      "caption": "",
-     "text": "富興 紅底"
+     "text": "富興 紅底",
+     "full": {
+      "src": "stickers/d92c9e3875.webp",
+      "w": 535,
+      "h": 331
+     }
     },
     {
      "src": "stickers/aaede84bc8.webp",
@@ -627,11 +652,16 @@ window.STICKER_DATA = {
    "note": "",
    "stickers": [
     {
-     "src": "stickers/3a0dfccd92.webp",
-     "w": 435,
-     "h": 327,
+     "src": "stickers/3a0dfccd92-s.webp",
+     "w": 327,
+     "h": 148,
      "caption": "",
-     "text": "茂順"
+     "text": "茂順",
+     "full": {
+      "src": "stickers/3a0dfccd92.webp",
+      "w": 435,
+      "h": 327
+     }
     }
    ],
    "positions": []
@@ -688,11 +718,16 @@ window.STICKER_DATA = {
    "note": "",
    "stickers": [
     {
-     "src": "stickers/29fe75777e.webp",
-     "w": 540,
-     "h": 337,
+     "src": "stickers/29fe75777e-s.webp",
+     "w": 329,
+     "h": 130,
      "caption": "",
-     "text": "崑KS嵩"
+     "text": "崑KS嵩",
+     "full": {
+      "src": "stickers/29fe75777e.webp",
+      "w": 540,
+      "h": 337
+     }
     }
    ],
    "positions": []
@@ -749,11 +784,16 @@ window.STICKER_DATA = {
    "note": "2022改貼中間",
    "stickers": [
     {
-     "src": "stickers/96964003c6.webp",
-     "w": 547,
-     "h": 346,
+     "src": "stickers/96964003c6-s.webp",
+     "w": 338,
+     "h": 136,
      "caption": "",
-     "text": "尊奉"
+     "text": "尊奉",
+     "full": {
+      "src": "stickers/96964003c6.webp",
+      "w": 547,
+      "h": 346
+     }
     },
     {
      "src": "stickers/7a8060d8ec.webp",
@@ -779,11 +819,16 @@ window.STICKER_DATA = {
    "note": "",
    "stickers": [
     {
-     "src": "stickers/5791ed8638.webp",
-     "w": 550,
-     "h": 351,
+     "src": "stickers/5791ed8638-s.webp",
+     "w": 336,
+     "h": 140,
      "caption": "",
-     "text": "佑昇 0912-408777"
+     "text": "佑昇 0912-408777",
+     "full": {
+      "src": "stickers/5791ed8638.webp",
+      "w": 550,
+      "h": 351
+     }
     }
    ],
    "positions": []
@@ -1359,11 +1404,16 @@ window.STICKER_DATA = {
    "note": "",
    "stickers": [
     {
-     "src": "stickers/490c656cb7.webp",
+     "src": "stickers/490c656cb7-s.webp",
      "w": 1200,
      "h": 479,
      "caption": "",
-     "text": "1404 J-01單"
+     "text": "1404 J-01單",
+     "full": {
+      "src": "stickers/490c656cb7.webp",
+      "w": 1200,
+      "h": 479
+     }
     }
    ],
    "positions": []
@@ -1519,11 +1569,16 @@ window.STICKER_DATA = {
    "note": "",
    "stickers": [
     {
-     "src": "stickers/d5b344cd68.webp",
-     "w": 552,
-     "h": 348,
+     "src": "stickers/d5b344cd68-s.webp",
+     "w": 334,
+     "h": 134,
      "caption": "",
-     "text": "ALSTOM"
+     "text": "ALSTOM",
+     "full": {
+      "src": "stickers/d5b344cd68.webp",
+      "w": 552,
+      "h": 348
+     }
     }
    ],
    "positions": []
@@ -1542,11 +1597,16 @@ window.STICKER_DATA = {
    "note": "",
    "stickers": [
     {
-     "src": "stickers/18021c3cd1.webp",
-     "w": 557,
-     "h": 363,
+     "src": "stickers/18021c3cd1-s.webp",
+     "w": 341,
+     "h": 150,
      "caption": "",
-     "text": "國豐"
+     "text": "國豐",
+     "full": {
+      "src": "stickers/18021c3cd1.webp",
+      "w": 557,
+      "h": 363
+     }
     }
    ],
    "positions": []
@@ -1565,11 +1625,16 @@ window.STICKER_DATA = {
    "note": "",
    "stickers": [
     {
-     "src": "stickers/df030bdabd.webp",
-     "w": 515,
-     "h": 325,
+     "src": "stickers/df030bdabd-s.webp",
+     "w": 326,
+     "h": 133,
      "caption": "",
-     "text": "廷祐 連絡電話 05-6930188"
+     "text": "廷祐 連絡電話 05-6930188",
+     "full": {
+      "src": "stickers/df030bdabd.webp",
+      "w": 515,
+      "h": 325
+     }
     }
    ],
    "positions": []
@@ -1634,11 +1699,16 @@ window.STICKER_DATA = {
    "note": "",
    "stickers": [
     {
-     "src": "stickers/99deb1facd.webp",
+     "src": "stickers/99deb1facd-s.webp",
      "w": 513,
-     "h": 385,
+     "h": 210,
      "caption": "",
-     "text": "威志"
+     "text": "威志",
+     "full": {
+      "src": "stickers/99deb1facd.webp",
+      "w": 513,
+      "h": 385
+     }
     }
    ],
    "positions": []
@@ -1657,11 +1727,16 @@ window.STICKER_DATA = {
    "note": "",
    "stickers": [
     {
-     "src": "stickers/cdd0d8cab7.webp",
-     "w": 1200,
-     "h": 975,
+     "src": "stickers/cdd0d8cab7-s.webp",
+     "w": 1059,
+     "h": 405,
      "caption": "",
-     "text": "品鏵"
+     "text": "品鏵",
+     "full": {
+      "src": "stickers/cdd0d8cab7.webp",
+      "w": 1200,
+      "h": 975
+     }
     }
    ],
    "positions": []
@@ -1680,11 +1755,16 @@ window.STICKER_DATA = {
    "note": "直接出貨",
    "stickers": [
     {
-     "src": "stickers/f63da69440.webp",
-     "w": 423,
-     "h": 266,
+     "src": "stickers/f63da69440-s.webp",
+     "w": 329,
+     "h": 144,
      "caption": "",
-     "text": "元桀"
+     "text": "元桀",
+     "full": {
+      "src": "stickers/f63da69440.webp",
+      "w": 423,
+      "h": 266
+     }
     }
    ],
    "positions": []
@@ -2009,11 +2089,16 @@ window.STICKER_DATA = {
    "note": "",
    "stickers": [
     {
-     "src": "stickers/a51d2d055b.webp",
-     "w": 549,
-     "h": 345,
+     "src": "stickers/a51d2d055b-s.webp",
+     "w": 386,
+     "h": 291,
      "caption": "",
-     "text": "麒翔 1000pcs"
+     "text": "麒翔 1000pcs",
+     "full": {
+      "src": "stickers/a51d2d055b.webp",
+      "w": 549,
+      "h": 345
+     }
     }
    ],
    "positions": []
@@ -2584,11 +2669,16 @@ window.STICKER_DATA = {
    "note": "",
    "stickers": [
     {
-     "src": "stickers/4d2b10880a.webp",
-     "w": 780,
-     "h": 597,
+     "src": "stickers/4d2b10880a-s.webp",
+     "w": 734,
+     "h": 288,
      "caption": "",
-     "text": "廷俐鷹架"
+     "text": "廷俐鷹架",
+     "full": {
+      "src": "stickers/4d2b10880a.webp",
+      "w": 780,
+      "h": 597
+     }
     }
    ],
    "positions": []
@@ -2645,11 +2735,16 @@ window.STICKER_DATA = {
    "note": "",
    "stickers": [
     {
-     "src": "stickers/9b07fe51c2.webp",
-     "w": 303,
-     "h": 277,
+     "src": "stickers/9b07fe51c2-s.webp",
+     "w": 279,
+     "h": 134,
      "caption": "",
-     "text": "勇鴻"
+     "text": "勇鴻",
+     "full": {
+      "src": "stickers/9b07fe51c2.webp",
+      "w": 303,
+      "h": 277
+     }
     }
    ],
    "positions": []
