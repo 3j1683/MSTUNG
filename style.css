@@ -617,3 +617,7 @@ input[type="search"] {
 }
 .s-warn span { display: block; font-weight: 500; }
 .s-nosticker { border-color: var(--high); }
+/* 重量試算：每台車剩餘載重 */
+.w-val small { display: block; font-size: 0.82rem; color: var(--low); font-weight: 700; }
+.w-val small.zero { color: var(--muted); font-weight: 500; }
+.w-spare b { color: #9fe0b4; }

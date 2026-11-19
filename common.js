@@ -2,7 +2,7 @@
 window.APP = (function () {
   "use strict";
 
-  var VERSION = "1.4.2";
+  var VERSION = "1.4.3";
   var cfg = window.APP_CONFIG || {};
   var ready = !!(window.supabase && cfg.SUPABASE_URL && cfg.SUPABASE_PUBLISHABLE_KEY);
 
