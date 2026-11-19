@@ -2,7 +2,7 @@
 
 用來登記報修需求、詢問交期，並集中查看處理進度。手機與電腦都能使用。
 
-目前版本：**v1.4.1**（更新紀錄見 [CHANGELOG.md](CHANGELOG.md)）
+目前版本：**v1.4.2**（更新紀錄見 [CHANGELOG.md](CHANGELOG.md)）
 
 ## 網址
 
