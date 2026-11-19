@@ -348,11 +348,15 @@
     var p = fleetPlan(all);
     if (p.error) {
       setNum($("t-trucks"), "—", "");
+      $("t-spare").textContent = "—";
       verdict.appendChild(el("span", "w-muted", "請先填入" + p.error + "每車載重上限（噸），即可算出需要幾台車。"));
       return;
     }
     var L = p.list, n = L.length;
     setNum($("t-trucks"), String(n), "台");
+    var spareAll = L.reduce(function (a, x) { return a + Math.max(0, x.cap - x.load); }, 0);
+    if (n) setNum($("t-spare"), fmt(spareAll, 0), "kg");
+    else $("t-spare").textContent = "—";
     if (!n) {
       verdict.appendChild(el("span", "w-muted", "輸入數量後會算出需要的車數。" + (auto ? "超過一台板車時，剩下的重量會自動搭配貨車或吊車。" : "")));
       return;
@@ -362,7 +366,9 @@
     verdict.appendChild(el("b", null, auto ? "需要 " + n + " 台車" : "需要 " + n + " 台" + TNAME[S.truck]));
     verdict.appendChild(el("span", "w-pill " + (n > 1 ? "over" : "ok"),
       auto ? fleetSummary(L) : (n > 1 ? "超過單車 " + fmt(last.cap / 1000) + " 噸" : "未超過 " + fmt(last.cap / 1000) + " 噸")));
-    verdict.appendChild(el("span", "w-muted", "最後一台還可裝 " + fmt(spare, 0) + " kg"));
+    verdict.appendChild(el("span", "w-muted", n > 1
+      ? "全部車輛還可裝 " + fmt(spareAll, 0) + " kg（最後一台 " + fmt(spare, 0) + " kg）"
+      : "還可裝 " + fmt(spare, 0) + " kg"));
 
     L.forEach(function (x, i) {
       var pct = Math.min(100, x.load / x.cap * 100);
@@ -377,7 +383,10 @@
       meter.appendChild(bar);
       t.appendChild(lbl);
       t.appendChild(meter);
-      t.appendChild(el("span", "w-val", (x.load / 1000).toFixed(3) + " / " + fmt(x.cap / 1000) + " 噸"));
+      var val = el("span", "w-val", (x.load / 1000).toFixed(3) + " / " + fmt(x.cap / 1000) + " 噸");
+      var left = Math.max(0, x.cap - x.load);
+      val.appendChild(el("small", left > 0 ? "w-left" : "w-left zero", left > 0 ? "剩 " + fmt(left, 0) + " kg" : "已滿"));
+      t.appendChild(val);
       trucks.appendChild(t);
     });
   }
@@ -523,8 +532,11 @@
     var p = fleetPlan(all);
     if (p.list && p.list.length) {
       txt += "\n車輛：共 " + p.list.length + " 台（" + fleetSummary(p.list) + "）\n" + p.list.map(function (x, i) {
-        return "　第 " + (i + 1) + " 車 " + TNAME[x.k] + "：" + (x.load / 1000).toFixed(3) + " / " + fmt(x.cap / 1000) + " 噸";
+        var left = Math.max(0, x.cap - x.load);
+        return "　第 " + (i + 1) + " 車 " + TNAME[x.k] + "：" + (x.load / 1000).toFixed(3) + " / " + fmt(x.cap / 1000) + " 噸，" +
+          (left > 0 ? "剩 " + fmt(left, 0) + " kg" : "已滿");
       }).join("\n");
+      txt += "\n剩餘載重：" + fmt(p.list.reduce(function (a, x) { return a + Math.max(0, x.cap - x.load); }, 0), 0) + " kg";
     }
     return txt;
   }
