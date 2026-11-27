@@ -11,6 +11,7 @@
 --                             所以改錯了可以從紀錄還原。
 --   - public.sticker_current：每位客戶最新的一筆（網頁讀這個，蓋過 stickers-data.js）。
 --   - Storage 儲存空間 sticker-photos：現場拍的貼紙照片（公開讀取）。
+--   - 寫入前檢查（觸發器）：兩人同時改同一位客戶時，後存檔的人會被擋下。
 --
 -- 權限（2026-11-27 已確認：任何人都能改，不用登入）：
 --   - 任何人（anon、authenticated）可以讀取、新增修改紀錄，可以上傳照片。
@@ -138,6 +139,7 @@ create table if not exists public.sticker_edits (
   positions    jsonb       not null default '[]'::jsonb,
   editor       text        not null,
   summary      text        not null default '',
+  base_id      bigint,
 
   -- 客戶代號：英數字、底線、連字號，1～40 字
   constraint sticker_edits_key_format
@@ -175,13 +177,58 @@ comment on column public.sticker_edits.stickers     is '貼紙圖片（格式同
 comment on column public.sticker_edits.positions    is '貼法位置圖（格式同 stickers-data.js）';
 comment on column public.sticker_edits.editor       is '修改人（網頁填寫，未驗證身分）';
 comment on column public.sticker_edits.summary      is '這次改了什麼（網頁自動產生）';
+comment on column public.sticker_edits.base_id      is '這次是根據哪一筆紀錄修改（新客戶或從原始資料修改為空白）';
+
+-- 重複執行時，舊版本建立的資料表補上 base_id
+alter table public.sticker_edits add column if not exists base_id bigint;
 
 create index if not exists sticker_edits_key_id_idx
   on public.sticker_edits (customer_key, id desc);
 
 
 -- ---------------------------------------------------------------------
--- 0-3. 每位客戶最新的一筆
+-- 0-3. 寫入前檢查：後存檔的人會被擋下
+--      網頁開啟修改時記下當時最新的一筆（base_id），存檔時一起送出。
+--      資料庫在新增前：
+--        1. 對同一位客戶加鎖，同時存檔的兩筆會排隊、一次處理一筆。
+--        2. 確認 base_id 仍是這位客戶最新的一筆；不是就拒絕（sticker_conflict）。
+--      所以兩人同時改同一家，先存的成功，後存的會被擋下，不會蓋掉別人的修改。
+--      還原舊版也是新增一筆（base_id = 目前最新的一筆），一樣受這個檢查保護。
+-- ---------------------------------------------------------------------
+create or replace function public.sticker_edits_check_base()
+returns trigger
+language plpgsql
+set search_path = ''
+as $$
+declare
+  latest bigint;
+begin
+  -- 同一位客戶的存檔排隊處理（交易結束自動解鎖）
+  perform pg_advisory_xact_lock(hashtextextended('sticker_edits:' || new.customer_key, 0));
+
+  select max(e.id) into latest
+  from public.sticker_edits e
+  where e.customer_key = new.customer_key;
+
+  if latest is distinct from new.base_id then
+    raise exception 'sticker_conflict'
+      using errcode = 'P0001',
+            detail  = '這位客戶剛剛有人改過，最新紀錄是 ' || coalesce(latest::text, '（無）');
+  end if;
+  return new;
+end;
+$$;
+
+revoke all on function public.sticker_edits_check_base() from public, anon, authenticated;
+
+drop trigger if exists sticker_edits_check_base on public.sticker_edits;
+create trigger sticker_edits_check_base
+  before insert on public.sticker_edits
+  for each row execute function public.sticker_edits_check_base();
+
+
+-- ---------------------------------------------------------------------
+-- 0-4. 每位客戶最新的一筆
 --      security_invoker：用查詢者自己的權限讀，沿用 sticker_edits 的 RLS。
 -- ---------------------------------------------------------------------
 create or replace view public.sticker_current
@@ -200,6 +247,7 @@ comment on view public.sticker_current is '每位客戶最新的貼紙資料（�
 --    - 沒有 UPDATE、DELETE：舊紀錄不能改也不能刪。
 --    - 檢查函式：CHECK 會用新增者的身分呼叫，所以 anon、authenticated
 --      要有執行權限。函式只檢查傳進來的內容，不讀也不寫任何資料表。
+--    - base_id 可以新增（寫入前檢查用）；觸發器函式不開放直接呼叫。
 -- ---------------------------------------------------------------------
 revoke all on table public.sticker_edits   from public, anon, authenticated;
 revoke all on table public.sticker_current from public, anon, authenticated;
@@ -208,7 +256,7 @@ grant usage on schema public to anon, authenticated;
 grant select on table public.sticker_edits   to anon, authenticated;
 grant select on table public.sticker_current to anon, authenticated;
 grant insert (customer_key, no, name, company, style, position, die, qty,
-              die_l, die_m, die_s, note, stickers, positions, editor, summary)
+              die_l, die_m, die_s, note, stickers, positions, editor, summary, base_id)
   on table public.sticker_edits to anon, authenticated;
 
 revoke all on function public.sticker_image_ok(jsonb, boolean)  from public, anon, authenticated;

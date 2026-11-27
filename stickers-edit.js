@@ -381,12 +381,18 @@
             return o;
           });
         }
-        var row = { customer_key: c.key, editor: editor, summary: summary.slice(0, 200) };
+        var row = { customer_key: c.key, editor: editor, summary: summary.slice(0, 200), base_id: baseId };
         FIELDS.forEach(function (f) { row[f[1]] = (draft.fields[f[0]] || "").trim(); });
         row.stickers = clean(draft.stickers, true);
         row.positions = clean(draft.positions, true);
         return db.from("sticker_edits").insert(row).select("*").single();
       }).then(function (r) {
+        // 資料庫的寫入前檢查：有人比你早一步存檔
+        if (r.error && /sticker_conflict/.test(r.error.message || "")) {
+          var ce = new Error("剛剛有人改過這位客戶，你的修改沒有存進去。請關閉後重新開啟，確認最新內容再修改（照片已上傳，重新拍即可）。");
+          ce.conflict = true;
+          throw ce;
+        }
         if (r.error) throw r.error;
         return rowToCustomer(r.data, c._orig);
       });
