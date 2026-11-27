@@ -1,4 +1,5 @@
 // 客戶貼紙：依客戶查詢貼紙樣式、滾字（字模）與貼法位置圖
+// 先顯示 stickers-data.js 的原始資料，再用 Supabase 的最新修改（sticker_current）蓋過去
 (function () {
   "use strict";
 
@@ -6,9 +7,14 @@
   var $ = A.$;
   var el = A.el;
   var DATA = window.STICKER_DATA || { customers: [], unmatched: [], headers: {} };
+  var cfg = window.APP_CONFIG || {};
+  var PHOTO_BASE = (cfg.SUPABASE_URL || "") + "/storage/v1/object/public/sticker-photos/";
 
   $("source").textContent = "客戶「貼紙」工作表（" + (DATA.title || "") + "）";
   $("die-sizes").textContent = [DATA.headers.dieL, DATA.headers.dieM, DATA.headers.dieS].filter(Boolean).join("、");
+
+  // 圖片位置：stickers/… 是網站內建的圖；sb:… 是現場上傳到 Supabase 的照片
+  function imgUrl(src) { return /^sb:/.test(src) ? PHOTO_BASE + src.slice(3) : src; }
 
   // 「滾中間-貼頭邊」→「滾中間」「貼頭邊」
   function positionParts(s) {
@@ -31,17 +37,26 @@
     return !noSticker(c) && (/貼/.test(c.position) || c.stickers.length > 0 || !!c.company);
   }
 
-  function haystack(c) {
-    return [c.no, c.name, c.company, c.style, c.position, c.die, c.dieL, c.note]
-      .concat(c.stickers.map(function (s) { return s.caption + " " + (s.text || ""); }))
-      .concat(c.positions.map(function (s) { return s.caption; }))
-      .join(" ").toLowerCase();
-  }
   // 比對時忽略空白、連字號、句點，電話寫「0937-234453」或「0937234453」都找得到
   function squash(s) { return s.replace(/[\s\-－–—_.．、，,()（）]/g, ""); }
-  DATA.customers.forEach(function (c) { c._hay = haystack(c); });
-  // haystack 先算好；noSticker 在下面定義後再補上「沒有貼紙」關鍵字
+  function prepare(c) {
+    c._hay = [c.no, c.name, c.company, c.style, c.position, c.die, c.dieL, c.note]
+      .concat(c.stickers.map(function (s) { return (s.caption || "") + " " + (s.text || ""); }))
+      .concat(c.positions.map(function (s) { return s.caption || ""; }))
+      .join(" ").toLowerCase();
+    if (noSticker(c)) c._hay += " 沒有貼紙 無貼紙";
+    c._flat = squash(c._hay);
+    return c;
+  }
 
+  // 目前顯示的客戶：原始資料（加上 _orig 供還原）＋ Supabase 的最新修改
+  var base = DATA.customers.map(function (c) {
+    var x = JSON.parse(JSON.stringify(c));
+    x._orig = c;
+    x._edit = null;
+    return x;
+  });
+  var customers = base.slice();
 
   // ---------- 放大檢視 ----------
   var viewer = $("viewer");
@@ -66,7 +81,7 @@
   }
   function showSrc(full) {
     showingFull = full;
-    vImg.src = full ? current.full.src : current.src;
+    vImg.src = imgUrl(full ? current.full.src : current.src);
     origBtn.textContent = full ? "看貼紙特寫" : "看原圖";
   }
   function openViewer(img, caption) {
@@ -77,7 +92,7 @@
     showSrc(false);
     setZoom(false);
     if (typeof viewer.showModal === "function") viewer.showModal();
-    else window.open(img.src, "_blank", "noopener");
+    else window.open(imgUrl(img.src), "_blank", "noopener");
   }
   zoomBtn.addEventListener("click", function () { setZoom(!vWrap.classList.contains("zoomed")); });
   vImg.addEventListener("click", function () { setZoom(!vWrap.classList.contains("zoomed")); }); // 點圖片也能放大／縮小
@@ -93,7 +108,7 @@
     b.type = "button";
     b.setAttribute("aria-label", "放大：" + label);
     var i = el("img");
-    i.src = img.src;
+    i.src = imgUrl(img.src);
     i.alt = label;
     i.loading = "lazy";
     i.decoding = "async";
@@ -105,6 +120,12 @@
     if (img.caption) fig.appendChild(el("figcaption", null, img.caption));
     return fig;
   }
+
+  // ---------- 現場修改 ----------
+  // editState：loading 讀取中／on 可以修改／off 未設定 Supabase／notready 尚未執行 SQL／error 讀取失敗
+  var editState = A.ready ? "loading" : "off";
+  var editor = null;
+  function canEdit() { return editState === "on" && !!editor; }
 
   // ---------- 客戶卡片 ----------
   function row(dl, term, value) {
@@ -169,32 +190,59 @@
       });
       card.appendChild(p);
     }
+
+    if (c._edit) {
+      card.appendChild(el("p", "s-edited", "最後修改：" + A.fmtTime(c._edit.at) + "　" + c._edit.editor));
+    }
+    if (canEdit()) {
+      var acts = el("div", "s-actions");
+      var shoot = el("button", null, "拍照更新");
+      shoot.type = "button";
+      shoot.addEventListener("click", function () { editor.photo(c, true); });
+      var edit = el("button", "secondary", "修改");
+      edit.type = "button";
+      edit.addEventListener("click", function () { editor.edit(c); });
+      acts.appendChild(shoot);
+      acts.appendChild(edit);
+      card.appendChild(acts);
+    }
     return card;
   }
 
   // ---------- 清單 ----------
-  var cards = DATA.customers.map(function (c) { return { c: c, node: renderCard(c) }; });
   var list = $("list");
-  cards.forEach(function (x) { list.appendChild(x.node); });
-  // 「只看貼紙圖」：每張貼紙一格，大圖顯示
   var gallery = $("gallery");
+  var cards = [];
   var tiles = [];
-  cards.forEach(function (x) {
-    var c = x.c;
-    c.stickers.forEach(function (s, i) {
-      var name = c.name || c.company;
-      var fig = imageButton(s, name + " 貼紙" + (c.stickers.length > 1 ? " " + (i + 1) : "") +
-        (s.caption ? "（" + s.caption + "）" : "") + (s.text ? "：" + s.text : ""), "s-tile");
-      var cap = fig.querySelector("figcaption") || fig.appendChild(el("figcaption"));
-      cap.replaceChildren(el("b", null, (c.no ? "No." + c.no + " " : "") + name));
-      if (s.caption) cap.appendChild(el("span", null, s.caption));
-      gallery.appendChild(fig);
-      tiles.push({ c: c, node: fig });
-    });
-  });
+  var empty = el("p", "card s-empty", "找不到符合的客戶，試試其他關鍵字或篩選。");
   var gEmpty = el("p", "card s-empty", "符合的客戶沒有貼紙圖片。");
-  gEmpty.hidden = true;
-  gallery.appendChild(gEmpty);
+  var noneCount = 0;
+
+  function renderAll() {
+    customers.forEach(prepare);
+    noneCount = customers.filter(noSticker).length;
+    cards = customers.map(function (c) { return { c: c, node: renderCard(c) }; });
+    list.replaceChildren();
+    cards.forEach(function (x) { list.appendChild(x.node); });
+    list.appendChild(empty);
+    // 「只看貼紙圖」：每張貼紙一格，大圖顯示
+    tiles = [];
+    gallery.replaceChildren();
+    customers.forEach(function (c) {
+      c.stickers.forEach(function (s, i) {
+        var name = c.name || c.company;
+        var fig = imageButton(s, name + " 貼紙" + (c.stickers.length > 1 ? " " + (i + 1) : "") +
+          (s.caption ? "（" + s.caption + "）" : "") + (s.text ? "：" + s.text : ""), "s-tile");
+        var cap = fig.querySelector("figcaption") || fig.appendChild(el("figcaption"));
+        cap.replaceChildren(el("b", null, (c.no ? "No." + c.no + " " : "") + name));
+        if (s.caption) cap.appendChild(el("span", null, s.caption));
+        gallery.appendChild(fig);
+        tiles.push({ c: c, node: fig });
+      });
+    });
+    gallery.appendChild(gEmpty);
+    apply();
+  }
 
   var VIEW_KEY = "mstung-sticker-view";
   var view = "cards";
@@ -207,26 +255,19 @@
     });
   });
 
-  var empty = el("p", "card s-empty", "找不到符合的客戶，試試其他關鍵字或篩選。");
-  empty.hidden = true;
-  list.appendChild(empty);
-
-  DATA.customers.forEach(function (c) { if (noSticker(c)) c._hay += " 沒有貼紙 無貼紙"; });
-  var noneCount = DATA.customers.filter(noSticker).length;
-
   function apply() {
     var tokens = $("q").value.trim().toLowerCase().split(/\s+/).filter(Boolean);
     var kind = $("kind").value;
     var shown = 0;
     cards.forEach(function (x) {
       var c = x.c;
-      var flat = c._flat || (c._flat = squash(c._hay));
-      var ok = tokens.every(function (t) { return c._hay.indexOf(t) !== -1 || (squash(t) && flat.indexOf(squash(t)) !== -1); });
+      var ok = tokens.every(function (t) { return c._hay.indexOf(t) !== -1 || (squash(t) && c._flat.indexOf(squash(t)) !== -1); });
       if (ok && kind === "roll") ok = hasRoll(c);
       if (ok && kind === "stick") ok = hasStick(c);
       if (ok && kind === "none") ok = noSticker(c);
       if (ok && kind === "img") ok = c.stickers.length > 0;
       if (ok && kind === "pos") ok = c.positions.length > 0;
+      if (ok && kind === "edited") ok = !!c._edit;
       x.node.hidden = !ok;
       x.ok = ok;
       if (ok) shown++;
@@ -245,8 +286,8 @@
     var unOk = un.length > 0 && !kind && tokens.every(function (t) { return unHay.indexOf(t) !== -1 || (squash(t) && squash(unHay).indexOf(squash(t)) !== -1); });
     $("unmatched-card").hidden = !unOk;
     empty.hidden = shown > 0 || unOk;
-    $("count").textContent = "共 " + DATA.customers.length + " 家客戶（" + noneCount + " 家沒有貼紙）" +
-      (shown !== DATA.customers.length ? "，符合 " + shown + " 家" : "") + (g ? "，顯示 " + tilesShown + " 張貼紙圖" : "") + "。";
+    $("count").textContent = "共 " + customers.length + " 家客戶（" + noneCount + " 家沒有貼紙）" +
+      (shown !== customers.length ? "，符合 " + shown + " 家" : "") + (g ? "，顯示 " + tilesShown + " 張貼紙圖" : "") + "。";
   }
   $("q").addEventListener("input", apply);
   $("kind").addEventListener("change", apply);
@@ -257,5 +298,95 @@
     DATA.unmatched.forEach(function (s, i) { u.appendChild(imageButton(s, "未對應圖片 " + (i + 1) + "：" + s.caption)); });
   }
 
-  apply();
+  // ---------- 讀取最新修改 ----------
+  var editBar = $("edit-bar");
+  var editStatus = $("edit-status");
+  var lastLoad = 0;
+  var loadedIds = "";
+
+  function showEditState() {
+    var on = editState === "on";
+    $("add-btn").hidden = !on;
+    editBar.hidden = editState === "off";
+    editStatus.className = "hint left" + (on || editState === "loading" ? "" : " s-editoff");
+    editStatus.textContent = {
+      loading: "讀取最新修改中…",
+      on: "現場有變更：在客戶卡片按「拍照更新」或「修改」，存檔後所有人馬上看得到，每次修改都有紀錄可以還原。",
+      notready: "現場修改功能尚未啟用（需要系統管理員在 Supabase 執行 supabase/update_v1.7.sql）。",
+      error: "無法讀取最新修改，目前顯示原始資料；網路恢復後重新整理頁面才能修改。",
+    }[editState] || "";
+  }
+
+  function merge(rows) {
+    var byKey = {};
+    rows.forEach(function (r) { byKey[r.customer_key] = r; });
+    var next = base.map(function (b) {
+      var r = byKey[b.key];
+      if (!r) return b;
+      delete byKey[b.key];
+      return editor.rowToCustomer(r, b._orig);
+    });
+    // 現場新增的客戶：依編號排在後面
+    var added = Object.keys(byKey).map(function (k) { return editor.rowToCustomer(byKey[k], null); });
+    added.sort(function (a, b) { return (parseInt(a.no, 10) || 1e9) - (parseInt(b.no, 10) || 1e9) || a._edit.id - b._edit.id; });
+    return next.concat(added);
+  }
+
+  function loadEdits(quiet) {
+    if (!A.ready || !editor) return Promise.resolve();
+    lastLoad = Date.now();
+    return A.publicDb.from("sticker_current").select("*").then(function (r) {
+      if (r.error) {
+        var missing = r.error.code === "PGRST205" || r.error.code === "42P01" || /schema cache|does not exist/i.test(r.error.message || "");
+        if (quiet && editState === "on" && !missing) return; // 背景更新失敗：維持目前畫面
+        editState = missing ? "notready" : "error";
+        showEditState();
+        renderAll();
+        return;
+      }
+      var ids = r.data.map(function (x) { return x.id; }).sort().join(",");
+      var changed = ids !== loadedIds || editState !== "on";
+      loadedIds = ids;
+      editState = "on";
+      showEditState();
+      if (changed) {
+        customers = merge(r.data);
+        renderAll();
+      }
+    }).catch(function () {
+      if (quiet && editState === "on") return;
+      editState = "error";
+      showEditState();
+      renderAll();
+    });
+  }
+
+  if (A.ready && window.createStickerEditor) {
+    editor = window.createStickerEditor({
+      db: A.publicDb,
+      imgUrl: imgUrl,
+      dieHeaders: DATA.headers,
+      sourceTitle: DATA.title,
+      canEdit: canEdit,
+      onSaved: function (c) {
+        var i = customers.findIndex(function (x) { return x.key === c.key; });
+        if (i === -1) customers.push(c); else customers[i] = c;
+        loadedIds = ""; // 下次背景更新時重新比對
+        renderAll();
+      },
+      onConflict: function () { loadEdits(true); },
+    });
+    $("add-btn").addEventListener("click", function () { editor.add(); });
+    // 回到這個頁面時（例如從相機或其他 App 切回來），超過 1 分鐘就重新讀取別人的修改
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible" && Date.now() - lastLoad > 60000 &&
+          !$("editor").open && !$("cropper").open) loadEdits(true);
+    });
+  } else if (A.ready) {
+    editState = "off";
+  }
+
+  showEditState();
+  renderAll();
+  loadEdits(false);
 })();

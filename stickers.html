@@ -4,27 +4,27 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+        content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; img-src 'self' data: blob: https://frndcsvhzolwtuqvofmg.supabase.co; connect-src https://frndcsvhzolwtuqvofmg.supabase.co; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
   <title>客戶貼紙</title>
-  <meta name="description" content="客戶貼紙樣式、滾字（字模）與貼法位置，依客戶查詢。">
+  <meta name="description" content="客戶貼紙樣式、滾字（字模）與貼法位置，依客戶查詢；現場可拍照更新。">
   <meta name="theme-color" content="#2458c6">
-  <link rel="icon" href="favicon.svg?v=1.6.0" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1.6.0">
-  <link rel="manifest" href="manifest.webmanifest?v=1.6.0">
+  <link rel="icon" href="favicon.svg?v=1.7.0" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1.7.0">
+  <link rel="manifest" href="manifest.webmanifest?v=1.7.0">
   <meta name="apple-mobile-web-app-title" content="報修登記">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="zh_TW">
   <meta property="og:site_name" content="報修登記系統">
   <meta property="og:title" content="報修登記系統｜客戶貼紙">
-  <meta property="og:description" content="客戶貼紙樣式、滾字（字模）與貼法位置，依客戶查詢。">
+  <meta property="og:description" content="客戶貼紙樣式、滾字（字模）與貼法位置，依客戶查詢；現場可拍照更新。">
   <meta property="og:url" content="https://3j1683.github.io/MSTUNG/stickers.html">
   <meta property="og:image" content="https://3j1683.github.io/MSTUNG/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="報修登記系統：報修登記與處理進度">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="style.css?v=1.6.0">
+  <link rel="stylesheet" href="style.css?v=1.7.0">
 </head>
 <body class="page-wide">
   <header class="site-header">
@@ -35,11 +35,11 @@
       <a href="help.html">使用說明</a>
     </nav>
     <div class="hero">
-      <img class="hero-icon" src="favicon.svg?v=1.6.0" alt="" width="64" height="64">
+      <img class="hero-icon" src="favicon.svg?v=1.7.0" alt="" width="64" height="64">
       <div class="hero-text">
         <p class="hero-kicker">報修登記系統</p>
         <h1>客戶貼紙</h1>
-        <p class="subtitle">依客戶查詢貼紙樣式、滾字（字模）與貼法位置。點圖片可以放大。</p>
+        <p class="subtitle">依客戶查詢貼紙樣式、滾字（字模）與貼法位置。點圖片可以放大，現場可以拍照更新。</p>
       </div>
     </div>
   </header>
@@ -61,6 +61,7 @@
             <option value="none">沒有貼紙</option>
             <option value="img">有貼紙圖片</option>
             <option value="pos">有貼法位置圖</option>
+            <option value="edited">有現場修改</option>
           </select>
         </div>
       </div>
@@ -71,6 +72,10 @@
       <p id="count" class="hint left" role="status" aria-live="polite"></p>
       <p class="hint left">打一部分就能找，例如「永」「鷹架」「0937」；多個關鍵字用空白隔開，例如「永 鷹架」。</p>
       <p class="hint left">字模尺寸：<span id="die-sizes"></span>。「V」表示有這個字模，「X」表示沒有。</p>
+      <div id="edit-bar" class="s-editbar" hidden>
+        <p id="edit-status" class="hint left" role="status" aria-live="polite"></p>
+        <button type="button" id="add-btn" class="secondary" hidden>＋ 新增客戶</button>
+      </div>
     </section>
 
     <div id="list" class="s-list"></div>
@@ -84,7 +89,7 @@
   </main>
 
   <footer class="site-footer">
-    資料來源：<span id="source"></span>。若有變更請通知系統管理員更新。<br>
+    資料來源：<span id="source"></span>，以及現場的修改紀錄。<br>
     報修登記系統 <span id="app-version"></span>
   </footer>
 
@@ -100,8 +105,104 @@
     </div>
   </dialog>
 
-  <script src="common.js?v=1.6.0"></script>
-  <script src="stickers-data.js?v=1.6.0"></script>
-  <script src="stickers.js?v=1.6.0"></script>
+  <!-- 修改客戶 -->
+  <dialog id="editor" class="s-dialog" aria-labelledby="editor-title">
+    <form id="editor-form" novalidate>
+      <div class="s-dialog-head">
+        <h2 id="editor-title">修改客戶</h2>
+        <button type="button" class="secondary" data-close>關閉</button>
+      </div>
+      <p id="e-message" class="message" role="status" aria-live="polite" hidden></p>
+
+      <fieldset class="s-fset">
+        <legend>貼紙圖片</legend>
+        <div id="e-stickers" class="s-elist"></div>
+        <div class="s-addrow">
+          <button type="button" class="secondary" data-add="stickers" data-camera>拍照新增貼紙</button>
+          <button type="button" class="secondary" data-add="stickers">選照片新增</button>
+        </div>
+      </fieldset>
+
+      <div id="e-fields"></div>
+
+      <fieldset class="s-fset">
+        <legend>貼法位置圖</legend>
+        <div id="e-positions" class="s-elist"></div>
+        <div class="s-addrow">
+          <button type="button" class="secondary" data-add="positions" data-camera>拍照新增位置圖</button>
+          <button type="button" class="secondary" data-add="positions">選照片新增</button>
+        </div>
+      </fieldset>
+
+      <details id="e-history" class="s-histbox">
+        <summary>修改紀錄（可還原）</summary>
+        <div id="e-hist-list"></div>
+      </details>
+
+      <div class="field">
+        <label for="e-editor">修改人（必填）</label>
+        <input id="e-editor" type="text" maxlength="30" autocomplete="name" required>
+        <p class="hint left">會記在修改紀錄裡；這台手機會記住，下次不用再填。</p>
+      </div>
+      <div class="s-dialog-foot">
+        <button type="submit" id="e-save">存檔</button>
+        <button type="button" class="secondary" data-close>取消</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- 拍照、裁切 -->
+  <dialog id="cropper" class="s-dialog" aria-labelledby="crop-title">
+    <div class="s-dialog-head">
+      <h2 id="crop-title">裁切照片</h2>
+    </div>
+    <p class="hint left">拖曳框框的四個角，框住貼紙就好；照片歪了先按轉向。框外的部分會另存成原圖。</p>
+    <div class="s-cropwrap">
+      <div id="crop-stage" class="s-cropstage">
+        <canvas id="crop-canvas" width="1" height="1"></canvas>
+        <div id="crop-box" class="s-cropbox">
+          <span data-h="nw"></span><span data-h="ne"></span><span data-h="sw"></span><span data-h="se"></span>
+        </div>
+      </div>
+    </div>
+    <div class="s-croptools">
+      <button type="button" class="secondary" id="crop-left">↺ 向左轉</button>
+      <button type="button" class="secondary" id="crop-right">↻ 向右轉</button>
+      <button type="button" class="secondary" id="crop-all">整張</button>
+      <button type="button" class="secondary" id="crop-retake">重拍／換一張</button>
+    </div>
+    <div id="crop-quick" hidden>
+      <div class="field">
+        <label for="crop-target">這張照片要</label>
+        <select id="crop-target"></select>
+      </div>
+      <div class="field">
+        <label for="crop-text">貼紙上的字（搜尋用，可不填）</label>
+        <input id="crop-text" type="text" maxlength="200">
+      </div>
+      <div class="field">
+        <label for="crop-editor">修改人（必填）</label>
+        <input id="crop-editor" type="text" maxlength="30" autocomplete="name">
+      </div>
+    </div>
+    <p id="crop-message" class="message" role="status" aria-live="polite" hidden></p>
+    <div class="s-dialog-foot">
+      <button type="button" id="crop-ok">用這張</button>
+      <button type="button" class="secondary" id="crop-cancel">取消</button>
+    </div>
+  </dialog>
+
+  <input type="file" id="photo-cam" accept="image/*" capture="environment" hidden>
+  <input type="file" id="photo-pick" accept="image/*" hidden>
+  <div id="s-toast" class="w-toast" role="status" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js"
+          integrity="sha384-TcHRA3zBbn+Lexh5n+Oil4guNPOS3rjNDpGRAN46u/s/mB2IZ50ceC6TYDU2yvgK"
+          crossorigin="anonymous"></script>
+  <script src="config.js?v=1.7.0"></script>
+  <script src="common.js?v=1.7.0"></script>
+  <script src="stickers-data.js?v=1.7.0"></script>
+  <script src="stickers-edit.js?v=1.7.0"></script>
+  <script src="stickers.js?v=1.7.0"></script>
 </body>
 </html>

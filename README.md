@@ -2,7 +2,7 @@
 
 用來登記報修需求並集中查看處理進度，另有重量試算與客戶貼紙查詢。手機與電腦都能使用。
 
-目前版本：**v1.6.0**（更新紀錄見 [CHANGELOG.md](CHANGELOG.md)）
+目前版本：**v1.7.0**（更新紀錄見 [CHANGELOG.md](CHANGELOG.md)）
 
 ## 網址
 
@@ -10,7 +10,7 @@
 |---|---|---|
 | 報修登記 | https://3j1683.github.io/MSTUNG/ | 所有同事；報修管理人員登入後更新處理狀態 |
 | 重量試算 | https://3j1683.github.io/MSTUNG/weight.html | 出貨人員：計算架材總重與車數 |
-| 客戶貼紙 | https://3j1683.github.io/MSTUNG/stickers.html | 生產、出貨：查客戶貼紙、滾字與貼法位置 |
+| 客戶貼紙 | https://3j1683.github.io/MSTUNG/stickers.html | 生產、出貨：查客戶貼紙、滾字與貼法位置；現場拍照更新、修改 |
 | 使用說明 | https://3j1683.github.io/MSTUNG/help.html | 所有人 |
 
 ## 功能
@@ -19,6 +19,7 @@
 - **報修狀態管理**：報修管理人員登入後，把狀態改成 待處理／處理中／已完成，系統自動記錄更新時間。
 - **重量試算**：架材單重 × 數量計算總重與所需車數（板車／吊車／貨車），可複製清單；資料只存在裝置上。
 - **客戶貼紙**：依客戶查貼紙樣式圖、滾字（字模）、貼紙位置與貼法位置圖。
+- **客戶貼紙現場更新**（v1.7）：不用登入，拍照換貼紙圖、修改客戶內容、新增客戶；每次存檔留下修改紀錄，可還原。
 - **交期詢問（已停用）**：v1.5.0 起從選單移除，頁面與資料仍保留，詳見 CHANGELOG。
 - 一般使用者不需要登入；報修管理人員在報修登記頁登入。
 - 可以「加入主畫面」，像 App 一樣從手機桌面開啟。
@@ -38,7 +39,8 @@
 | `weight.html`、`weight.js` | 重量試算頁 |
 | `weight-data.js` | 架材品項與單重資料（修改單重或新增品項改這裡） |
 | `stickers.html`、`stickers.js` | 客戶貼紙頁 |
-| `stickers-data.js`、`stickers/` | 客戶貼紙資料與圖片（更新客戶資料改這裡） |
+| `stickers-edit.js` | 客戶貼紙現場拍照更新、修改、修改紀錄與還原 |
+| `stickers-data.js`、`stickers/` | 客戶貼紙原始資料與圖片（現場修改存在 Supabase，會蓋過這裡的資料） |
 | `help.html` | 使用說明頁 |
 | `common.js` | 共用：Supabase 連線、管理人員登入、訊息與時間格式 |
 | `config.js` | Supabase 網址與 publishable key（**不可放 secret 金鑰**） |
@@ -49,6 +51,7 @@
 | `supabase/schema.sql` | 報修資料表與權限（v1.0） |
 | `supabase/delivery_inquiries.sql` | 交期詢問資料表與權限（v1.0） |
 | `supabase/update_v1.1.sql` | v1.1：報修管理人員可更新處理狀態 |
+| `supabase/update_v1.7.sql` | v1.7：客戶貼紙修改紀錄與照片儲存空間 |
 | `supabase/functions/` | LINE 通知的 Edge Functions |
 | `文件/報修欄位表.xlsx` | 欄位定義與範例資料 |
 | `文件/LINE通知設定步驟.md` | LINE 通知的設定步驟 |
@@ -69,10 +72,12 @@
    - **Site URL**：`https://3j1683.github.io/MSTUNG/`
    - **Redirect URLs** 新增：`https://3j1683.github.io/MSTUNG/**`
 7. （已停用）交期回覆的 LINE 通知：隨交期詢問一起停用，不需設定。
+8. **執行 `supabase/update_v1.7.sql`**（v1.7 新增，客戶貼紙現場修改）。會建立修改紀錄資料表與照片儲存空間 `sticker-photos`；若照片空間那段因權限失敗，依檔案裡的說明到 Storage 手動建立後再執行一次。沒執行時客戶貼紙頁照常查詢，只是不能修改。
 
 ## 注意事項
 
 - 清單任何拿到網址的人都看得到，請勿填寫機密資料。
 - 客戶貼紙頁含真實客戶名稱與部分電話，網站與儲存庫都是公開的（已確認可公開）。
+- 客戶貼紙任何人都能修改（已確認不用登入）。被改錯或亂改時，在「修改」→「修改紀錄」還原即可；紀錄與照片不能被刪除。現場拍的照片也是公開的。
 - 報修與詢問送出後不能修改或刪除，以保留紀錄。
 - 網站更新後最多約 10 分鐘生效；版本號顯示在每頁最下方。
