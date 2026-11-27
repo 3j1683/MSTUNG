@@ -1,5 +1,6 @@
 // 客戶貼紙、滾字（字模）與貼法位置資料
 // 來源：客戶上傳的「貼紙」工作表（20160714字模統計），2026-11-19 整理；圖片在 stickers/
+// key：客戶代號，現場修改時用來對應 Supabase 的 sticker_edits（不要改；No.104 有兩家，晟鈦用 104b）
 window.STICKER_DATA = {
  "title": "20160714字模統計",
  "headers": {
@@ -9,6 +10,7 @@ window.STICKER_DATA = {
  },
  "customers": [
   {
+   "key": "1",
    "no": "1",
    "name": "鑫永富",
    "company": "鑫永富",
@@ -32,6 +34,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "2",
    "no": "2",
    "name": "政航",
    "company": "政航",
@@ -60,6 +63,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "3",
    "no": "3",
    "name": "昇鉅",
    "company": "",
@@ -75,6 +79,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "4",
    "no": "4",
    "name": "盛達",
    "company": "盛達",
@@ -98,6 +103,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "5",
    "no": "5",
    "name": "大豐燿",
    "company": "大豐耀",
@@ -126,6 +132,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "6",
    "no": "6",
    "name": "進通",
    "company": "進通",
@@ -141,6 +148,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "7",
    "no": "7",
    "name": "美璁",
    "company": "美璁",
@@ -156,6 +164,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "8",
    "no": "8",
    "name": "允贊",
    "company": "允贊",
@@ -179,6 +188,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "9",
    "no": "9",
    "name": "永久",
    "company": "永久",
@@ -202,6 +212,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "10",
    "no": "10",
    "name": "亞旭",
    "company": "",
@@ -217,6 +228,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "11",
    "no": "11",
    "name": "(力愷)凱駿",
    "company": "凱駿",
@@ -240,6 +252,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "12",
    "no": "12",
    "name": "八方",
    "company": "八方",
@@ -255,6 +268,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "13",
    "no": "13",
    "name": "科毅",
    "company": "科毅",
@@ -270,6 +284,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "14",
    "no": "14",
    "name": "高安",
    "company": "高安",
@@ -293,6 +308,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "15",
    "no": "15",
    "name": "唯鴻",
    "company": "唯鴻",
@@ -316,6 +332,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "16",
    "no": "16",
    "name": "昌益",
    "company": "在豐",
@@ -331,6 +348,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "17",
    "no": "17",
    "name": "實固",
    "company": "",
@@ -346,6 +364,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "18",
    "no": "18",
    "name": "泰山",
    "company": "泰山",
@@ -361,6 +380,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "19",
    "no": "19",
    "name": "永和益",
    "company": "永合益",
@@ -376,6 +396,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "20",
    "no": "20",
    "name": "鴻麒",
    "company": "鴻麒",
@@ -404,6 +425,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "21",
    "no": "21",
    "name": "尚甫",
    "company": "尚甫",
@@ -419,6 +441,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "22",
    "no": "22",
    "name": "哲銓",
    "company": "哲銓",
@@ -442,6 +465,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "23",
    "no": "23",
    "name": "速雲",
    "company": "速雲",
@@ -457,6 +481,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "24",
    "no": "24",
    "name": "呈光",
    "company": "呈光",
@@ -472,6 +497,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "25",
    "no": "25",
    "name": "春富",
    "company": "春富",
@@ -487,6 +513,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "26",
    "no": "26",
    "name": "堃弘",
    "company": "",
@@ -502,6 +529,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "27",
    "no": "27",
    "name": "昌益",
    "company": "在豐",
@@ -517,6 +545,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "28",
    "no": "28",
    "name": "萬國",
    "company": "工固貼紙",
@@ -532,6 +561,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "29",
    "no": "29",
    "name": "鉞鑫",
    "company": "鉞鑫工程",
@@ -547,6 +577,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "30",
    "no": "30",
    "name": "AE(哥倫比亞)",
    "company": "",
@@ -562,6 +593,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "31",
    "no": "31",
    "name": "永清",
    "company": "永清",
@@ -604,6 +636,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "32",
    "no": "32",
    "name": "富興",
    "company": "富興",
@@ -639,6 +672,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "33",
    "no": "33",
    "name": "茂順",
    "company": "茂順",
@@ -667,6 +701,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "34",
    "no": "34",
    "name": "展辰",
    "company": "展辰",
@@ -690,6 +725,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "35",
    "no": "35",
    "name": "天耀",
    "company": "X",
@@ -705,6 +741,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "36",
    "no": "36",
    "name": "崑嵩",
    "company": "崑KS嵩",
@@ -733,6 +770,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "37",
    "no": "37",
    "name": "鵬群",
    "company": "鵬Cp群",
@@ -748,6 +786,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "38",
    "no": "38",
    "name": "新立亞",
    "company": "新立亞",
@@ -771,6 +810,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "39",
    "no": "39",
    "name": "瑋權",
    "company": "尊奉",
@@ -806,6 +846,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "40",
    "no": "40",
    "name": "佑昇",
    "company": "佑昇",
@@ -834,6 +875,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "41",
    "no": "41",
    "name": "得協",
    "company": "",
@@ -849,6 +891,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "42",
    "no": "42",
    "name": "大奇",
    "company": "大奇",
@@ -872,6 +915,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "43",
    "no": "43",
    "name": "AE(哥倫比亞)",
    "company": "AE貼紙(外銷品)",
@@ -887,6 +931,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "45",
    "no": "45",
    "name": "承新",
    "company": "承新",
@@ -902,6 +947,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "46",
    "no": "46",
    "name": "科毅.固駩",
    "company": "固駩",
@@ -925,6 +971,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "47",
    "no": "47",
    "name": "永力達",
    "company": "永力達",
@@ -948,6 +995,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "48",
    "no": "48",
    "name": "慶發",
    "company": "倉麟",
@@ -963,6 +1011,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "49",
    "no": "49",
    "name": "漢珈",
    "company": "錠昌",
@@ -978,6 +1027,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "50",
    "no": "50",
    "name": "錠昌",
    "company": "錠昌",
@@ -993,6 +1043,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "51",
    "no": "51",
    "name": "錠昌",
    "company": "錠昌(客戶提供)",
@@ -1016,6 +1067,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "52",
    "no": "52",
    "name": "六穩",
    "company": "六穩",
@@ -1031,6 +1083,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "53",
    "no": "53",
    "name": "怡豐",
    "company": "怡豐",
@@ -1046,6 +1099,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "54",
    "no": "54",
    "name": "良勝",
    "company": "良勝",
@@ -1061,6 +1115,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "55",
    "no": "55",
    "name": "偉鋼",
    "company": "偉鋼",
@@ -1084,6 +1139,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "56",
    "no": "56",
    "name": "陞隆",
    "company": "陞隆",
@@ -1107,6 +1163,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "57",
    "no": "57",
    "name": "三興",
    "company": "三興",
@@ -1143,6 +1200,7 @@ window.STICKER_DATA = {
    ]
   },
   {
+   "key": "58",
    "no": "58",
    "name": "華成(町井井",
    "company": "華成",
@@ -1185,6 +1243,7 @@ window.STICKER_DATA = {
    ]
   },
   {
+   "key": "59",
    "no": "59",
    "name": "承奇",
    "company": "承奇",
@@ -1208,6 +1267,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "60",
    "no": "60",
    "name": "寬鴻",
    "company": "寬鴻",
@@ -1231,6 +1291,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "61",
    "no": "61",
    "name": "漢唐",
    "company": "漢唐",
@@ -1254,6 +1315,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "62",
    "no": "62",
    "name": "中華保溫",
    "company": "中華保溫",
@@ -1277,6 +1339,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "63",
    "no": "63",
    "name": "晶勝",
    "company": "",
@@ -1300,6 +1363,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "64",
    "no": "64",
    "name": "煒翔(程泰)",
    "company": "程泰         實固  STK500",
@@ -1315,6 +1379,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "65",
    "no": "65",
    "name": "大宜昌",
    "company": "承翰",
@@ -1338,6 +1403,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "66",
    "no": "66",
    "name": "竣瑋",
    "company": "竣瑋",
@@ -1361,6 +1427,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "67",
    "no": "67",
    "name": "竣瑋",
    "company": "1408 J-01單",
@@ -1376,6 +1443,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "68",
    "no": "68",
    "name": "竣瑋",
    "company": "1411 J-01單",
@@ -1391,6 +1459,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "69",
    "no": "69",
    "name": "竣瑋",
    "company": "1404 J-01單",
@@ -1419,6 +1488,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "70",
    "no": "70",
    "name": "竣瑋",
    "company": "1503 J-01單",
@@ -1434,6 +1504,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "71",
    "no": "71",
    "name": "恆崗",
    "company": "恆崗",
@@ -1457,6 +1528,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "72",
    "no": "72",
    "name": "永明昌",
    "company": "工固貼紙",
@@ -1472,6 +1544,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "73",
    "no": "73",
    "name": "協泉",
    "company": "無",
@@ -1487,6 +1560,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "74",
    "no": "74",
    "name": "固輝",
    "company": "",
@@ -1510,6 +1584,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "75",
    "no": "75",
    "name": "里展",
    "company": "",
@@ -1533,6 +1608,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "76",
    "no": "76",
    "name": "鉞鑫",
    "company": "",
@@ -1556,6 +1632,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "77",
    "no": "77",
    "name": "艾斯敦",
    "company": "",
@@ -1584,6 +1661,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "78",
    "no": "78",
    "name": "國豐",
    "company": "",
@@ -1612,6 +1690,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "79",
    "no": "79",
    "name": "廷祐",
    "company": "",
@@ -1640,6 +1719,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "80",
    "no": "80",
    "name": "揚築/築欣",
    "company": "揚築",
@@ -1663,6 +1743,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "81",
    "no": "81",
    "name": "鼎安",
    "company": "鼎安",
@@ -1686,6 +1767,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "82",
    "no": "82",
    "name": "威志",
    "company": "威志",
@@ -1714,6 +1796,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "83",
    "no": "83",
    "name": "品鏵",
    "company": "品鏵",
@@ -1742,6 +1825,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "84",
    "no": "84",
    "name": "元桀",
    "company": "元桀",
@@ -1770,6 +1854,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "85",
    "no": "85",
    "name": "巧貹",
    "company": "巧貹",
@@ -1793,6 +1878,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "86",
    "no": "86",
    "name": "源益",
    "company": "源益",
@@ -1816,6 +1902,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "87",
    "no": "87",
    "name": "揚神",
    "company": "揚神工程有限公司",
@@ -1839,6 +1926,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "88",
    "no": "88",
    "name": "逸鷹",
    "company": "逸鷹",
@@ -1862,6 +1950,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "89",
    "no": "89",
    "name": "富景",
    "company": "富景 永寶通+電話",
@@ -1885,6 +1974,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "90",
    "no": "90",
    "name": "廣建",
    "company": "",
@@ -1915,6 +2005,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "91",
    "no": "91",
    "name": "勇泰",
    "company": "勇泰",
@@ -1938,6 +2029,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "92",
    "no": "92",
    "name": "宇安成",
    "company": "宇安成",
@@ -1961,6 +2053,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "93",
    "no": "93",
    "name": "杉禾",
    "company": "杉禾",
@@ -1984,6 +2077,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "94",
    "no": "94",
    "name": "信嬅",
    "company": "信嬅",
@@ -2007,6 +2101,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "95",
    "no": "95",
    "name": "森岳",
    "company": "森岳",
@@ -2030,6 +2125,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "96",
    "no": "96",
    "name": "紘昇",
    "company": "明旺",
@@ -2053,6 +2149,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "97",
    "no": "97",
    "name": "芮榮",
    "company": "芮榮",
@@ -2076,6 +2173,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "98",
    "no": "98",
    "name": "麒翔",
    "company": "麒翔",
@@ -2104,6 +2202,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "99",
    "no": "99",
    "name": "昱勝",
    "company": "昱勝",
@@ -2127,6 +2226,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "100",
    "no": "100",
    "name": "同興",
    "company": "同興",
@@ -2150,6 +2250,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "101",
    "no": "101",
    "name": "炳澤",
    "company": "炳澤",
@@ -2173,6 +2274,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "102",
    "no": "102",
    "name": "呂發",
    "company": "呂發",
@@ -2196,6 +2298,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "103",
    "no": "103",
    "name": "成穎",
    "company": "成穎",
@@ -2219,6 +2322,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "104",
    "no": "104",
    "name": "亞洲航空",
    "company": "直接出貨",
@@ -2242,6 +2346,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "104b",
    "no": "104",
    "name": "晟鈦",
    "company": "晟鈦",
@@ -2265,6 +2370,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "105",
    "no": "105",
    "name": "全宸",
    "company": "全宸",
@@ -2288,6 +2394,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "106",
    "no": "106",
    "name": "和泰",
    "company": "和泰",
@@ -2311,6 +2418,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "107",
    "no": "107",
    "name": "大宜昌",
    "company": "大宜昌",
@@ -2334,6 +2442,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "108",
    "no": "108",
    "name": "品奕",
    "company": "",
@@ -2357,6 +2466,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "109",
    "no": "109",
    "name": "喬煒",
    "company": "士誠",
@@ -2380,6 +2490,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "110",
    "no": "110",
    "name": "長陽",
    "company": "",
@@ -2403,6 +2514,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "111",
    "no": "111",
    "name": "上帆",
    "company": "聖捷",
@@ -2426,6 +2538,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "112",
    "no": "112",
    "name": "定立",
    "company": "",
@@ -2449,6 +2562,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "113",
    "no": "113",
    "name": "台中鐵架",
    "company": "山城",
@@ -2472,6 +2586,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "114",
    "no": "114",
    "name": "中華工程",
    "company": "BES 中華",
@@ -2495,6 +2610,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "115",
    "no": "115",
    "name": "佳詺",
    "company": "佳詺",
@@ -2518,6 +2634,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "116",
    "no": "116",
    "name": "鴻漢",
    "company": "",
@@ -2541,6 +2658,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "117",
    "no": "117",
    "name": "築九",
    "company": "",
@@ -2564,6 +2682,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "118",
    "no": "118",
    "name": "辰光",
    "company": "",
@@ -2587,6 +2706,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "119",
    "no": "119",
    "name": "和格",
    "company": "",
@@ -2610,6 +2730,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "120",
    "no": "120",
    "name": "偉力",
    "company": "",
@@ -2633,6 +2754,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "121",
    "no": "121",
    "name": "澎匠",
    "company": "",
@@ -2656,6 +2778,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "122",
    "no": "122",
    "name": "廷俐",
    "company": "",
@@ -2684,6 +2807,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "123",
    "no": "123",
    "name": "永洋",
    "company": "",
@@ -2707,6 +2831,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "124",
    "no": "124",
    "name": "茂泰",
    "company": "",
@@ -2722,6 +2847,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "125",
    "no": "125",
    "name": "勇鴻",
    "company": "",
@@ -2750,6 +2876,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "126",
    "no": "126",
    "name": "弘騏",
    "company": "",
@@ -2765,6 +2892,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "127",
    "no": "127",
    "name": "磊高",
    "company": "",
@@ -2788,6 +2916,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "128",
    "no": "128",
    "name": "偉林(主)",
    "company": "",
@@ -2811,6 +2940,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "129",
    "no": "129",
    "name": "偉林(橫)",
    "company": "",
@@ -2834,6 +2964,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "130",
    "no": "130",
    "name": "金宏軒",
    "company": "",
@@ -2857,6 +2988,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "131",
    "no": "131",
    "name": "匯發",
    "company": "",
@@ -2872,6 +3004,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "132",
    "no": "132",
    "name": "得琳",
    "company": "",
@@ -2895,6 +3028,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "133",
    "no": "133",
    "name": "定誠",
    "company": "",
@@ -2925,6 +3059,7 @@ window.STICKER_DATA = {
    ]
   },
   {
+   "key": "134",
    "no": "134",
    "name": "井上",
    "company": "井上/井寶",
@@ -2955,6 +3090,7 @@ window.STICKER_DATA = {
    "positions": []
   },
   {
+   "key": "135",
    "no": "135",
    "name": "聚陞",
    "company": "聚陞/銑廣",

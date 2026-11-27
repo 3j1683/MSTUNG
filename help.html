@@ -9,9 +9,9 @@
   <title>使用說明</title>
   <meta name="description" content="報修登記、重量試算、客戶貼紙與管理人員的操作說明。">
   <meta name="theme-color" content="#2458c6">
-  <link rel="icon" href="favicon.svg?v=1.6.0" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1.6.0">
-  <link rel="manifest" href="manifest.webmanifest?v=1.6.0">
+  <link rel="icon" href="favicon.svg?v=1.7.0" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1.7.0">
+  <link rel="manifest" href="manifest.webmanifest?v=1.7.0">
   <meta name="apple-mobile-web-app-title" content="報修登記">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="zh_TW">
@@ -24,7 +24,7 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="報修登記系統：報修登記與處理進度">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="style.css?v=1.6.0">
+  <link rel="stylesheet" href="style.css?v=1.7.0">
 </head>
 <body>
   <header class="site-header">
@@ -35,7 +35,7 @@
       <a href="help.html" aria-current="page">使用說明</a>
     </nav>
     <div class="hero">
-      <img class="hero-icon" src="favicon.svg?v=1.6.0" alt="" width="64" height="64">
+      <img class="hero-icon" src="favicon.svg?v=1.7.0" alt="" width="64" height="64">
       <div class="hero-text">
         <p class="hero-kicker">報修登記系統</p>
         <h1>使用說明</h1>
@@ -82,7 +82,33 @@
         <li>點圖片會放大；在放大畫面再點圖片或按「放大」可以看細節，手指拖曳移動。截圖裁切過的貼紙可按「看原圖」看完整圖片。</li>
       </ol>
       <p>檔案沒有寫貼紙的客戶，會標示紅色「沒有貼紙」並顯示提示；篩選選「沒有貼紙」可以一次列出。</p>
-      <p>字模欄的「V」表示有這個字模，「X」表示沒有。資料來源是 2016 年起的「貼紙」工作表，客戶有變更請通知系統管理員更新。</p>
+      <p>字模欄的「V」表示有這個字模，「X」表示沒有。資料來源是 2016 年起的「貼紙」工作表，加上現場的修改。</p>
+
+      <h3>現場拍照更新貼紙</h3>
+      <p>不需要登入，任何人都可以更新。存檔後所有人馬上看得到。</p>
+      <ol>
+        <li>找到客戶，按卡片下方的「拍照更新」，手機會打開相機，拍下貼紙。</li>
+        <li>拖曳框框的四個角，框住貼紙就好；照片歪了先按「向左轉」「向右轉」。框外的部分會另存成原圖，日後可按「看原圖」。</li>
+        <li>確認「這張照片要」：換掉原本的哪一張貼紙，或新增一張貼紙、貼法位置圖。只有一張貼紙的客戶預設是換掉那一張。</li>
+        <li>填「貼紙上的字」（搜尋用，可不填）和「修改人」，按「存檔」。修改人填一次，這支手機會記住。</li>
+      </ol>
+
+      <h3>修改客戶內容</h3>
+      <ol>
+        <li>按卡片下方的「修改」，可以改編號、名稱、貼紙公司名、樣式、位置、字模、數量、備註。</li>
+        <li>每張圖片可以「拍照換掉」「選照片換掉」或「刪除」，也可以改說明與貼紙上的字；下方可以新增貼紙或貼法位置圖（每種最多 10 張）。</li>
+        <li>填修改人，按「存檔」。</li>
+      </ol>
+      <p>新客戶：按查詢區的「＋ 新增客戶」，填名稱與資料、拍貼紙照片後存檔。</p>
+      <p>篩選選「有現場修改」可以列出被改過的客戶，卡片下方會顯示最後修改的時間與修改人。</p>
+
+      <h3>改錯了：從修改紀錄還原</h3>
+      <ol>
+        <li>按「修改」，打開最下方的「修改紀錄（可還原）」。</li>
+        <li>每次存檔都有一筆紀錄（時間、修改人、改了什麼）。找到正確的那一版按「還原這一版」，或按「還原原始資料」回到網站內建的資料。</li>
+        <li>內容帶入後按「存檔」才會生效。舊的照片與紀錄都不會被刪除。</li>
+      </ol>
+      <p>如果存檔時出現「剛剛有人改過這位客戶」，代表同一時間有別人也在改，請關閉後重新開啟，確認最新內容再改。</p>
     </section>
 
     <section class="card help" aria-labelledby="h-staff">
@@ -127,7 +153,9 @@
       <h2 id="h-faq">常見問題</h2>
       <dl>
         <dt>送出後可以修改或刪除嗎？</dt>
-        <dd>不行。為了保留紀錄，報修與詢問送出後不能修改或刪除，填錯請再送一筆並在說明中註明。</dd>
+        <dd>不行。為了保留紀錄，報修與詢問送出後不能修改或刪除，填錯請再送一筆並在說明中註明。客戶貼紙可以修改，但每次修改都會留下紀錄。</dd>
+        <dt>客戶貼紙頁看不到「拍照更新」「修改」按鈕？</dt>
+        <dd>查詢區下方會說明原因：網路斷線時只能查看，恢復後重新整理頁面；顯示「尚未啟用」請聯絡系統管理員。</dd>
         <dt>誰看得到我填的資料？</dt>
         <dd>任何拿到網址的人都看得到清單，請不要填寫真實姓名以外的個人資料、密碼或機密客戶資料。</dd>
         <dt>畫面顯示「網路連線失敗」或「清單載入失敗」？</dt>
@@ -139,7 +167,7 @@
   </main>
 
   <footer class="site-footer">
-    報修登記系統 <span id="app-version">v1.6.0</span>
+    報修登記系統 <span id="app-version">v1.7.0</span>
   </footer>
 </body>
 </html>
